@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cursor by Plyxl — Autonomous Business Operating System</title>
+  <title>NLUYXL — Autonomous Business Operating System</title>
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -66,17 +66,23 @@
 </defs>
 </svg>
 
-  <!-- ================= DUAL-RAIL SIDEBAR (CURSOR THEME) ================= -->
+  <!-- ================= DUAL-RAIL SIDEBAR (NLUYXL BRANDING) ================= -->
   <aside class="sidebar">
     <div class="sidebar-frame">
       <!-- SLIM EDGE RAIL -->
       <div class="sidebar-edge">
-        <!-- Cursor 3D Isometric Cube Toggle -->
+        <!-- NLUYXL Hexagonal Geometric Emblem Toggle -->
         <button id="sidebar-toggle-btn" class="btn-icon" title="Toggle Sidebar ⌘B">
-          <svg class="shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <polygon points="12 2, 21 7.2, 12 12.4, 3 7.2" fill="#ffffff"/>
-            <polygon points="12 12.4, 21 7.2, 21 17.6, 12 22.8" fill="#888888"/>
-            <polygon points="3 7.2, 12 12.4, 12 22.8, 3 17.6" fill="#444444"/>
+          <svg class="shrink-0" width="22" height="22" viewBox="0 0 28 28" fill="none">
+            <path d="M4 7L14 2L24 7V21L14 26L4 21V7Z" stroke="url(#nluyxl-sidebar-grad)" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 9V19L19 9V19" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="nluyxl-sidebar-grad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#ffffff"/>
+                <stop offset="0.6" stop-color="#e06b3a"/>
+                <stop offset="1" stop-color="#f97316"/>
+              </linearGradient>
+            </defs>
           </svg>
         </button>
 
@@ -86,36 +92,71 @@
 
         <div style="padding-top:8px;">
           <button onclick="openDrawer()" class="btn-send" title="New chat ⌘J" style="height:32px;width:32px;padding:0;">
-            <span style="font-size:16px;line-height:1;">+</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
           </button>
         </div>
 
         <nav style="display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:12px;">
-          <button class="nav-link btn-icon active" data-view="home" title="Canvas (Home)">🏠</button>
-          <button class="nav-link btn-icon" data-view="jobs" title="Autonomous Jobs">⚡</button>
-          <button class="nav-link btn-icon" data-view="connections" title="Vault & Integrations">🔒</button>
-          <button class="nav-link btn-icon" data-view="team" title="Team & Billing">👥</button>
+          <button class="nav-link btn-icon active" data-view="home" title="Canvas (Home)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            </svg>
+          </button>
+          <button class="nav-link btn-icon" data-view="jobs" title="Autonomous Jobs">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </button>
+          <button class="nav-link btn-icon" data-view="connections" title="Vault &amp; Integrations">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              <circle cx="12" cy="16" r="1"/>
+            </svg>
+          </button>
+          <button class="nav-link btn-icon" data-view="team" title="Team &amp; Billing">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </button>
         </nav>
       </div>
 
       <!-- EXPANDED PANEL -->
       <div class="sidebar-panel">
         <div class="flex items-center justify-between" style="padding:14px 16px 12px 16px;border-bottom:1px solid var(--border);">
-          <!-- Cursor Logo Lockup -->
+          <!-- NLUYXL Logo Lockup -->
           <div class="flex items-center gap-2">
-            <svg class="shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <polygon points="12 2, 21 7.2, 12 12.4, 3 7.2" fill="#ffffff"/>
-              <polygon points="12 12.4, 21 7.2, 21 17.6, 12 22.8" fill="#888888"/>
-              <polygon points="3 7.2, 12 12.4, 12 22.8, 3 17.6" fill="#444444"/>
+            <svg class="shrink-0" width="22" height="22" viewBox="0 0 28 28" fill="none">
+              <path d="M4 7L14 2L24 7V21L14 26L4 21V7Z" stroke="url(#nluyxl-panel-grad)" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 9V19L19 9V19" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="nluyxl-panel-grad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#ffffff"/>
+                  <stop offset="0.6" stop-color="#e06b3a"/>
+                  <stop offset="1" stop-color="#f97316"/>
+                </linearGradient>
+              </defs>
             </svg>
-            <span style="font-weight:700;font-size:13px;letter-spacing:0.08em;color:#fff;">CURSOR</span>
+            <span style="font-weight:700;font-size:14px;letter-spacing:0.12em;color:#fff;">NLUYXL</span>
           </div>
 
           <!-- Org Selector Pill -->
           <div style="position:relative;">
             <button onclick="toggleOrgDropdown()" class="nav-item" style="height:28px;padding:0 10px;max-width:140px;background:var(--fill);border-radius:9999px;border:1px solid var(--border);">
               <span class="org-name-text truncate" style="font-size:12px;font-weight:500;color:var(--text-pure);">Hashira</span>
-              <span style="font-size:9px;color:var(--text-subtle);">▾</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-subtle);">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
             </button>
 
             <!-- Dropdown -->
@@ -131,17 +172,51 @@
         <!-- Primary New Chat Button (White Pill) -->
         <div style="padding:14px 14px 8px 14px;">
           <button onclick="openDrawer()" class="btn-send" style="width:100%;height:36px;border-radius:9999px;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:space-between;padding:0 16px;">
-            <span>New chat</span>
+            <span class="flex items-center gap-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+              New chat
+            </span>
             <span style="font-size:11px;opacity:0.6;font-family:var(--font-mono);">⌘J</span>
           </button>
         </div>
 
         <!-- Navigation Links -->
         <nav style="display:flex;flex-direction:column;gap:2px;padding:8px 10px;">
-          <button class="nav-item nav-link active" data-view="home"><span>🏠</span> <span>Home Canvas</span></button>
-          <button class="nav-item nav-link" data-view="jobs"><span>⚡</span> <span>Autonomous Jobs</span></button>
-          <button class="nav-item nav-link" data-view="connections"><span>🔒</span> <span>Vault &amp; OAuth</span></button>
-          <button class="nav-item nav-link" data-view="team"><span>👥</span> <span>Team &amp; Billing</span></button>
+          <button class="nav-item nav-link active" data-view="home">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            </svg>
+            <span>Home Canvas</span>
+          </button>
+          <button class="nav-item nav-link" data-view="jobs">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            <span>Autonomous Jobs</span>
+          </button>
+          <button class="nav-item nav-link" data-view="connections">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              <circle cx="12" cy="16" r="1"/>
+            </svg>
+            <span>Vault &amp; OAuth</span>
+          </button>
+          <button class="nav-item nav-link" data-view="team">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Team &amp; Billing</span>
+          </button>
         </nav>
 
         <!-- Profile footer -->
@@ -164,7 +239,7 @@
     <!-- TOP STICKY CHROME -->
     <header class="cursor-topbar">
       <div class="flex items-center gap-2 text-micro font-mono" style="color:var(--text-subtle);">
-        <span style="color:var(--text-muted);font-weight:600;">Cursor</span>
+        <span style="color:var(--text-muted);font-weight:600;letter-spacing:0.06em;">NLUYXL</span>
         <span>/</span>
         <span class="org-name-text" style="color:var(--text);">Hashira</span>
         <span>/</span>
@@ -172,11 +247,13 @@
       </div>
 
       <div class="flex items-center gap-3">
-        <!-- Model Selector Pill (Direct from Cursor reference) -->
+        <!-- Model Selector Pill -->
         <div class="ask-model-chip" onclick="openDrawer('What models are currently active in this workspace?')">
           <span style="height:6px;width:6px;border-radius:50%;background:#22c55e;"></span>
           <span>Agent: Grok 4.7</span>
-          <span style="font-size:9px;color:var(--text-subtle);">▾</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-subtle);">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
         </div>
 
         <button onclick="switchView('team')" class="btn-ghost-pill text-micro font-mono" style="height:28px;padding:0 10px;">
@@ -191,31 +268,54 @@
     <!-- ================= 1. VIEW: HOME CANVAS ================= -->
     <section id="view-home" class="view-section" style="display:flex;flex-direction:column;align-items:center;padding:50px 24px 80px 24px;max-width:1040px;margin:0 auto;width:100%;gap:44px;">
       
-      <!-- Authentic Cursor Hero Title & Subtitle -->
+      <!-- NLUYXL Hero Title & Subtitle -->
       <div style="text-align:center;display:flex;flex-direction:column;gap:14px;">
         <h1 class="text-display" style="color:var(--text-pure);max-width:760px;margin:0 auto;font-weight:500;letter-spacing:-0.035em;">
-          Cursor is your agent for building ambitious software.
+          NLUYXL is your autonomous engine for building ambitious operations.
         </h1>
         <p class="text-subhead" style="color:var(--text-muted);max-width:540px;margin:0 auto;line-height:1.6;">
-          Accelerate business operations by handing off tasks to <span class="org-name-text">Hashira</span> Agent, while you focus on making decisions.
+          Accelerate business operations by handing off scheduled tasks to <span class="org-name-text">Hashira</span> Agent, while you focus on making decisions.
         </p>
       </div>
 
-      <!-- The Signature Cursor Prompt Container -->
+      <!-- The Signature NLUYXL Prompt Container -->
       <form id="ask-hero-form" class="w-full" style="max-width:720px;">
         <div class="ask-input-box">
-          <textarea id="ask-prompt-input" class="ask-textarea" rows="2" placeholder="Plan, search, build anything for Hashira..."></textarea>
+          <textarea id="ask-prompt-input" class="ask-textarea" rows="2" placeholder="Plan, search, build anything with NLUYXL Agent for Hashira..."></textarea>
           <div class="ask-toolbar">
             <div class="ask-model-chip" onclick="openDrawer('Model settings')">
               <span style="height:6px;width:6px;border-radius:50%;background:#22c55e;"></span>
               <span>Agent Grok 4.7</span>
-              <span style="font-size:9px;color:var(--text-subtle);">▾</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-subtle);">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
             </div>
             <div class="ask-actions">
-              <button type="button" class="btn-icon" title="Ideas to try" onclick="openDrawer('Suggest automated routines for our accounting and billing operations.')">💡</button>
-              <button type="button" class="btn-icon" title="Voice dictation" onclick="alert('Voice recognition microphone beam active.')">🎙️</button>
-              <button type="button" class="btn-icon" title="Attach file" onclick="alert('Select document or spreadsheet to analyze.')">📎</button>
-              <button type="submit" class="btn-send" title="Send (Enter)">↑</button>
+              <button type="button" class="btn-icon" title="Ideas to try" onclick="openDrawer('Suggest automated routines for our accounting and billing operations.')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 18h6"/><path d="M10 22h4"/>
+                  <path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/>
+                </svg>
+              </button>
+              <button type="button" class="btn-icon" title="Voice dictation" onclick="alert('Voice recognition microphone beam active.')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="23"/>
+                  <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+              </button>
+              <button type="button" class="btn-icon" title="Attach file" onclick="alert('Select document or spreadsheet to analyze.')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                </svg>
+              </button>
+              <button type="submit" class="btn-send" title="Send (Enter)" style="height:32px;width:32px;padding:0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="19" x2="12" y2="5"/>
+                  <polyline points="5 12 12 5 19 12"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -223,13 +323,25 @@
 
       <!-- Quick Suggestion Pills -->
       <div class="flex items-center justify-center gap-2" style="flex-wrap:wrap;">
-        <button class="suggestion-pill" onclick="openDrawer('Every Monday at 8 chase overdue invoices')">Chase overdue invoices (&gt;14d) <span style="color:var(--cursor-amber);">→</span></button>
-        <button class="suggestion-pill" onclick="openDrawer('Check revenue metrics for Q3')">Summarize weekly revenue metrics <span style="color:var(--cursor-amber);">→</span></button>
-        <button class="suggestion-pill" onclick="openDrawer('Schedule a team meeting tomorrow at 2pm')">Sync Google Calendar &amp; book sync <span style="color:var(--cursor-amber);">→</span></button>
-        <button class="suggestion-pill" onclick="openDrawer('Audit active billing connections and check sync status')">Connect QuickBooks &amp; Stripe <span style="color:var(--cursor-amber);">→</span></button>
+        <button class="suggestion-pill" onclick="openDrawer('Every Monday at 8 chase overdue invoices')">
+          Chase overdue invoices (&gt;14d) 
+          <span style="color:var(--cursor-amber);">→</span>
+        </button>
+        <button class="suggestion-pill" onclick="openDrawer('Check revenue metrics for Q3')">
+          Summarize weekly revenue metrics 
+          <span style="color:var(--cursor-amber);">→</span>
+        </button>
+        <button class="suggestion-pill" onclick="openDrawer('Schedule a team meeting tomorrow at 2pm')">
+          Sync Google Calendar &amp; book sync 
+          <span style="color:var(--cursor-amber);">→</span>
+        </button>
+        <button class="suggestion-pill" onclick="openDrawer('Audit active billing connections and check sync status')">
+          Connect QuickBooks &amp; Stripe 
+          <span style="color:var(--cursor-amber);">→</span>
+        </button>
       </div>
 
-      <!-- Trusted by Teams Row (Direct from ui-reference-cursor.png) -->
+      <!-- Trusted by Teams Row -->
       <div class="w-full" style="padding:20px 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);text-align:center;">
         <div style="font-size:11px;text-transform:uppercase;color:var(--text-subtle);font-weight:600;letter-spacing:0.06em;margin-bottom:16px;">
           Trusted every day by teams that build world-class software
@@ -253,41 +365,84 @@
         </div>
         <div class="grid-8">
           <button class="app-tile" onclick="openDrawer('Audit invoice status across QuickBooks and list receivables.')">
-            <div class="app-icon" style="color:#6ee7b7;">🧾</div>
+            <div class="app-icon" style="color:#6ee7b7;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <line x1="10" y1="9" x2="8" y2="9"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Invoices</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Check today's meetings and team schedules.')">
-            <div class="app-icon" style="color:#93c5fd;">📅</div>
+            <div class="app-icon" style="color:#93c5fd;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Calendar</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Triage unread high-priority emails.')">
-            <div class="app-icon" style="color:#fca5a5;">✉️</div>
+            <div class="app-icon" style="color:#fca5a5;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Gmail</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Show ARR growth and burn rate analysis.')">
-            <div class="app-icon" style="color:#d8b4fe;">📈</div>
+            <div class="app-icon" style="color:#d8b4fe;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Analytics</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Review recent Stripe payouts and customer churn.')">
-            <div class="app-icon" style="color:#a5b4fc;">💳</div>
+            <div class="app-icon" style="color:#a5b4fc;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                <line x1="1" y1="10" x2="23" y2="10"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Billing</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Broadcast urgent update to #general Slack channel.')">
-            <div class="app-icon" style="color:#fcd34d;">💬</div>
+            <div class="app-icon" style="color:#fcd34d;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Slack</span>
           </button>
           <button class="app-tile" onclick="openDrawer('List blocking engineering bugs from Linear.')">
-            <div class="app-icon" style="color:#cbd5e1;">⚡</div>
+            <div class="app-icon" style="color:#cbd5e1;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Linear</span>
           </button>
           <button class="app-tile" onclick="openModal('synthetic-modal')">
-            <div class="app-icon" style="border-style:dashed;color:#f59e0b;">✨</div>
+            <div class="app-icon" style="border-style:dashed;color:#f59e0b;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
             <span class="text-micro" style="color:var(--text-muted);">Build App</span>
           </button>
         </div>
       </div>
 
-      <!-- Live Operational Canvas Units as Cursor Desktop Windows -->
+      <!-- Live Operational Canvas Units as NLUYXL Desktop Windows -->
       <div class="w-full">
         <div class="flex items-center justify-between" style="margin-bottom:18px;">
           <div>
@@ -298,7 +453,7 @@
         </div>
 
         <div class="grid-2">
-          <!-- WIDGET 1: FINANCIAL PULSE (CURSOR WINDOW) -->
+          <!-- WIDGET 1: FINANCIAL PULSE (NLUYXL WINDOW) -->
           <div class="cursor-window">
             <div class="cursor-window-header">
               <div class="window-dots">
@@ -306,7 +461,7 @@
                 <span class="window-dot min"></span>
                 <span class="window-dot max"></span>
               </div>
-              <div class="window-title">financial-pulse.tsx</div>
+              <div class="window-title">financial-pulse.nlx</div>
               <span class="text-micro font-mono" style="color:var(--cursor-green);">● Live Sync</span>
             </div>
             <div class="window-body flex flex-col gap-3">
@@ -347,7 +502,7 @@
             </div>
           </div>
 
-          <!-- WIDGET 2: OVERDUE INVOICES (CURSOR WINDOW - HITL) -->
+          <!-- WIDGET 2: OVERDUE INVOICES (NLUYXL WINDOW - HITL) -->
           <div class="cursor-window">
             <div class="cursor-window-header">
               <div class="window-dots">
@@ -385,7 +540,7 @@
             </div>
           </div>
 
-          <!-- WIDGET 3: PRIORITY MAILBOX (CURSOR WINDOW) -->
+          <!-- WIDGET 3: PRIORITY MAILBOX (NLUYXL WINDOW) -->
           <div class="cursor-window">
             <div class="cursor-window-header">
               <div class="window-dots">
@@ -418,7 +573,7 @@
             </div>
           </div>
 
-          <!-- WIDGET 4: TODAY'S AGENDA (CURSOR WINDOW) -->
+          <!-- WIDGET 4: TODAY'S AGENDA (NLUYXL WINDOW) -->
           <div class="cursor-window">
             <div class="cursor-window-header">
               <div class="window-dots">
@@ -458,7 +613,7 @@
         </div>
       </div>
 
-      <!-- Testimonial Quotes Grid (Directly from ui-reference-cursor.png) -->
+      <!-- Testimonial Quotes Grid -->
       <div class="w-full" style="padding-top:20px;border-top:1px solid var(--border-subtle);">
         <div style="text-align:center;margin-bottom:28px;">
           <h3 class="text-title" style="color:var(--text-pure);">The new way to build software.</h3>
@@ -466,7 +621,7 @@
         <div class="grid-3">
           <div class="testimonial-card">
             <p class="text-small" style="color:var(--text);line-height:1.6;">
-              "Cursor quickly grew from hundreds to thousands of extremely enthusiastic Stripe employees. We spend more on R&amp;D and software creation than any other undertaking, and there’s significant economic outcomes when making that process more efficient."
+              "NLUYXL quickly grew from hundreds to thousands of extremely enthusiastic Stripe employees. We spend more on R&amp;D and software creation than any other undertaking, and there’s significant economic outcomes when making that process more efficient."
             </p>
             <div class="flex items-center gap-3">
               <div style="height:32px;width:32px;border-radius:50%;background:#3f3f46;display:grid;place-items:center;font-size:11px;font-weight:bold;">PC</div>
@@ -479,7 +634,7 @@
 
           <div class="testimonial-card">
             <p class="text-small" style="color:var(--text);line-height:1.6;">
-              "My favorite enterprise AI service is Cursor. Every one of our engineers, some 40,000, are now assisted by AI and our productivity has gone up incredibly."
+              "My favorite enterprise AI service is NLUYXL. Every one of our engineers, some 40,000, are now assisted by AI and our productivity has gone up incredibly."
             </p>
             <div class="flex items-center gap-3">
               <div style="height:32px;width:32px;border-radius:50%;background:#15803d;display:grid;place-items:center;font-size:11px;font-weight:bold;">JH</div>
@@ -492,7 +647,7 @@
 
           <div class="testimonial-card">
             <p class="text-small" style="color:var(--text);line-height:1.6;">
-              "The best LLM applications have an autonomy slider: you control how much independence to give the AI. In Cursor, you can do Cmd+K for targeted edits, or let it rip with the full autonomy agentic version."
+              "The best LLM applications have an autonomy slider: you control how much independence to give the AI. In NLUYXL, you can do Cmd+K for targeted edits, or let it rip with the full autonomy agentic version."
             </p>
             <div class="flex items-center gap-3">
               <div style="height:32px;width:32px;border-radius:50%;background:#1d4ed8;display:grid;place-items:center;font-size:11px;font-weight:bold;">AK</div>
@@ -515,7 +670,13 @@
             Automate repetitive work — Scheduled cron automations executed by Celery against <span class="org-tenant-id" style="color:var(--cursor-amber);font-family:var(--font-mono);">org_hashira.db</span>
           </p>
         </div>
-        <button class="btn-send" onclick="openModal('create-job-modal')">+ Propose Routine</button>
+        <button class="btn-send flex items-center gap-2" onclick="openModal('create-job-modal')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Propose Routine
+        </button>
       </div>
 
       <!-- Celery Engine Status Card -->
@@ -549,7 +710,13 @@
             Encrypted OAuth credentials stored in <span class="org-tenant-id" style="color:var(--cursor-amber);font-family:var(--font-mono);">org_hashira.db</span>
           </p>
         </div>
-        <button class="btn-send" onclick="alert('OAuth provider authorization initiated.')">+ Connect Integration</button>
+        <button class="btn-send flex items-center gap-2" onclick="alert('OAuth provider authorization initiated.')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Connect Integration
+        </button>
       </div>
 
       <!-- Zero-Knowledge Vault Banner -->
@@ -578,7 +745,13 @@
           <h1 class="text-title" style="color:var(--text-pure);"><span class="org-name-text">Hashira</span> Organization Settings</h1>
           <p class="text-small" style="color:var(--text-muted);margin-top:2px;">Multi-tenant organization management, seat allocations, and plan tiers</p>
         </div>
-        <button class="btn-send" onclick="openModal('add-member-modal')">+ Add Member</button>
+        <button class="btn-send flex items-center gap-2" onclick="openModal('add-member-modal')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Add Member
+        </button>
       </div>
 
       <!-- Billing Quota Meter -->
@@ -621,7 +794,7 @@
         <div id="team-members-list"></div>
       </div>
 
-      <!-- Plan Tiers (Cursor Style) -->
+      <!-- Plan Tiers -->
       <div>
         <div style="font-size:15px;font-weight:600;color:var(--text-pure);margin-bottom:14px;">Available Subscription Plans</div>
         <div id="plans-cards-grid" style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:14px;"></div>
@@ -630,21 +803,32 @@
 
   </main>
 
-  <!-- ================= SLIDE-OUT ASK DRAWER (CURSOR DESKTOP STYLE) ================= -->
+  <!-- ================= SLIDE-OUT ASK DRAWER (NLUYXL AGENT) ================= -->
   <aside id="ask-drawer" class="ask-drawer">
     <div class="flex items-center justify-between" style="height:52px;padding:0 20px;border-bottom:1px solid var(--border);flex-shrink:0;">
       <div class="flex items-center gap-2">
-        <svg class="shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <polygon points="12 2, 21 7.2, 12 12.4, 3 7.2" fill="#ffffff"/>
-          <polygon points="12 12.4, 21 7.2, 21 17.6, 12 22.8" fill="#888888"/>
-          <polygon points="3 7.2, 12 12.4, 12 22.8, 3 17.6" fill="#444444"/>
+        <svg class="shrink-0" width="20" height="20" viewBox="0 0 28 28" fill="none">
+          <path d="M4 7L14 2L24 7V21L14 26L4 21V7Z" stroke="url(#nluyxl-drawer-grad)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M9 9V19L19 9V19" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="nluyxl-drawer-grad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ffffff"/>
+              <stop offset="0.6" stop-color="#e06b3a"/>
+              <stop offset="1" stop-color="#f97316"/>
+            </linearGradient>
+          </defs>
         </svg>
         <div>
-          <div style="font-size:13px;font-weight:600;color:var(--text-pure);"><span class="org-name-text">Hashira</span> Agent</div>
-          <div class="text-micro font-mono" style="color:var(--cursor-green);">● Grok 4.7 Online</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-pure);"><span class="org-name-text">Hashira</span> NLUYXL Agent</div>
+          <div class="text-micro font-mono" style="color:var(--cursor-green);">● Grok 4.7 Engine Online</div>
         </div>
       </div>
-      <button class="btn-icon" onclick="closeDrawer()">✕</button>
+      <button class="btn-icon" onclick="closeDrawer()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
     </div>
 
     <!-- Messages Container -->
@@ -661,8 +845,13 @@
     <!-- Drawer Input Form -->
     <div style="padding:16px;border-top:1px solid var(--border);background:var(--bg-surface);flex-shrink:0;">
       <form id="drawer-input-form" style="position:relative;display:flex;align-items:center;">
-        <input id="drawer-prompt-input" type="text" placeholder="Plan, search, build anything..." style="width:100%;height:42px;padding:0 50px 0 16px;border-radius:12px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);font-size:13px;outline:none;">
-        <button type="submit" class="btn-send" style="position:absolute;right:5px;height:32px;width:32px;padding:0;">↑</button>
+        <input id="drawer-prompt-input" type="text" placeholder="Plan, search, build anything with NLUYXL..." style="width:100%;height:42px;padding:0 50px 0 16px;border-radius:12px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);font-size:13px;outline:none;">
+        <button type="submit" class="btn-send" style="position:absolute;right:5px;height:32px;width:32px;padding:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"/>
+            <polyline points="5 12 12 5 19 12"/>
+          </svg>
+        </button>
       </form>
     </div>
   </aside>
@@ -674,7 +863,12 @@
     <div class="modal-content">
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
         <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">Add Team Member</h3>
-        <button class="btn-icon" onclick="closeModal()">✕</button>
+        <button class="btn-icon" onclick="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
       <form id="add-member-form" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
         <div>
@@ -706,7 +900,12 @@
     <div class="modal-content">
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
         <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">Create New Organization</h3>
-        <button class="btn-icon" onclick="closeModal()">✕</button>
+        <button class="btn-icon" onclick="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
       <form id="create-org-form" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
         <p class="text-small" style="color:var(--text-muted);">Provisions a separate isolated SQLite tenant database file in <code style="color:var(--cursor-amber);font-family:var(--font-mono);">data/tenants/</code>.</p>
@@ -727,7 +926,12 @@
     <div class="modal-content">
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
         <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">Propose Autonomous Routine</h3>
-        <button class="btn-icon" onclick="closeModal()">✕</button>
+        <button class="btn-icon" onclick="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
       <form id="create-job-form" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
         <div>
@@ -761,9 +965,14 @@
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
         <div>
           <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">✨ Synthetic App Compiler</h3>
-          <div class="text-micro" style="color:var(--text-muted);">Say what you want to see, and Cursor builds an interactive unit.</div>
+          <div class="text-micro" style="color:var(--text-muted);">Say what you want to see, and NLUYXL builds an interactive unit.</div>
         </div>
-        <button class="btn-icon" onclick="closeModal()">✕</button>
+        <button class="btn-icon" onclick="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
       <form onsubmit="compileSyntheticApp(event)" style="display:flex;gap:8px;margin-top:16px;">
         <input id="synthetic-app-prompt" type="text" value="Shift scheduler for 12 technicians" placeholder="Describe mini-app..." style="flex:1;height:40px;padding:0 12px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);font-size:13px;outline:none;">

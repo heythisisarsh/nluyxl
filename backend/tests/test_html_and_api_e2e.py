@@ -159,7 +159,7 @@ def main():
         # TEST 3: Backend Mounted /app/ Route Delivery (port 8000)
         # -------------------------------------------------------------
         status, app_html = http_request(f"{BACKEND_URL}/app/")
-        mounted_ok = status == 200 and "Plyxl — Autonomous Business Operating System" in app_html
+        mounted_ok = status == 200 and ("NLUYXL" in app_html and "Autonomous Business Operating System" in app_html)
         record_result(
             "3. FastAPI StaticFiles Mount of frontend-html at /app/",
             mounted_ok,

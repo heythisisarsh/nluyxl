@@ -179,8 +179,11 @@ async function loadJobs(orgId) {
               <div style="font-size:15px;font-weight:600;color:var(--text-pure);">${j.title}</div>
               <div style="font-size:13px;color:var(--text-muted);margin-top:2px;">${j.instruction}</div>
             </div>
-            <button class="btn-send" style="height:32px;font-size:12px;" onclick="executeJob('${j.id}')">
-              ▶ Run Now
+            <button class="btn-send flex items-center gap-2" style="height:32px;font-size:12px;" onclick="executeJob('${j.id}')">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              Run Now
             </button>
           </div>
           <div class="flex items-center justify-between text-micro font-mono" style="color:var(--text-subtle);padding-top:10px;border-top:1px solid var(--border);">
@@ -215,16 +218,40 @@ async function loadConnections(orgId) {
   try {
     const conns = await API.getConnections(orgId);
     const meta = {
-      quickbooks: { name: "QuickBooks Online", cat: "Accounting & Invoicing", icon: "🧾" },
-      google_calendar: { name: "Google Calendar", cat: "Productivity & Scheduling", icon: "📅" },
-      gmail: { name: "Gmail API", cat: "Outbound & Inbound Email", icon: "✉️" },
-      stripe: { name: "Stripe Billing", cat: "Payments & Subscriptions", icon: "💳" },
-      slack: { name: "Slack Enterprise", cat: "Internal Communications", icon: "💬" },
+      quickbooks: { 
+        name: "QuickBooks Online", 
+        cat: "Accounting & Invoicing", 
+        iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>` 
+      },
+      google_calendar: { 
+        name: "Google Calendar", 
+        cat: "Productivity & Scheduling", 
+        iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>` 
+      },
+      gmail: { 
+        name: "Gmail API", 
+        cat: "Outbound & Inbound Email", 
+        iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>` 
+      },
+      stripe: { 
+        name: "Stripe Billing", 
+        cat: "Payments & Subscriptions", 
+        iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>` 
+      },
+      slack: { 
+        name: "Slack Enterprise", 
+        cat: "Internal Communications", 
+        iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>` 
+      },
     };
 
     container.innerHTML = conns
       .map((c) => {
-        const m = meta[c.provider] || { name: c.provider.toUpperCase(), cat: "Business Service", icon: "🔌" };
+        const m = meta[c.provider] || { 
+          name: c.provider.toUpperCase(), 
+          cat: "Business Service", 
+          iconSvg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="4"/></svg>` 
+        };
         const isConnected = c.status === "connected";
         return `
         <div class="cursor-window">
@@ -237,8 +264,8 @@ async function loadConnections(orgId) {
           </div>
           <div class="window-body flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div style="height:44px;width:44px;border-radius:10px;background:var(--bg-well);display:grid;place-items:center;font-size:20px;border:1px solid var(--border);">
-                ${m.icon}
+              <div style="height:44px;width:44px;border-radius:10px;background:var(--bg-well);display:grid;place-items:center;border:1px solid var(--border);">
+                ${m.iconSvg}
               </div>
               <div>
                 <div style="font-size:13px;font-weight:600;color:var(--text-pure);">${m.name}</div>
@@ -247,7 +274,13 @@ async function loadConnections(orgId) {
               </div>
             </div>
             <div class="flex items-center gap-2">
-              ${isConnected ? `<button class="btn-ghost-pill text-micro font-mono" style="height:30px;padding:0 10px;" onclick="inspectVault('${m.name}')">Vault 🔑</button>` : ""}
+              ${isConnected ? `<button class="btn-ghost-pill text-micro font-mono flex items-center gap-1" style="height:30px;padding:0 10px;" onclick="inspectVault('${m.name}')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                Vault
+              </button>` : ""}
               <button class="${isConnected ? "btn-ghost-pill" : "btn-send"}" style="height:30px;padding:0 12px;font-size:12px;" onclick="toggleConn('${c.provider}', '${c.status}')">
                 ${isConnected ? "Disconnect" : "Connect"}
               </button>
