@@ -2,11 +2,11 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml* ./
-RUN npm install -g pnpm && pnpm install --frozen-lockfile || pnpm install
+COPY package.json ./
+RUN npm install --legacy-peer-deps
 
 COPY . .
-RUN pnpm build
+RUN npm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
