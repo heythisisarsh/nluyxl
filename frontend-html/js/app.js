@@ -151,36 +151,42 @@ function loadActiveViewData() {
 async function loadJobs(orgId) {
   const list = document.getElementById("jobs-list-container");
   if (!list) return;
-  list.innerHTML = '<div style="padding:40px;text-align:center;color:var(--muted);">Loading jobs...</div>';
+  list.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text-muted);">Loading autonomous routines...</div>';
 
   try {
     const jobs = await API.getJobs(orgId);
     if (jobs.length === 0) {
-      list.innerHTML = `<div style="padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:16px;">No background jobs for ${state.currentOrg.name}.</div>`;
+      list.innerHTML = `<div style="padding:40px;text-align:center;color:var(--text-muted);border:1px dashed var(--border);border-radius:14px;">No background jobs configured for ${state.currentOrg.name}.</div>`;
       return;
     }
 
     list.innerHTML = jobs
       .map(
         (j) => `
-      <div class="widget-card">
-        <div class="flex items-center justify-between">
-          <div>
-            <div style="font-size:15px;font-weight:600;color:var(--text);">${j.title}</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:2px;">${j.instruction}</div>
+      <div class="cursor-window">
+        <div class="cursor-window-header">
+          <div class="window-dots">
+            <span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span>
           </div>
-          <div class="flex items-center gap-2">
-            <span style="padding:4px 10px;border-radius:9999px;font-size:11px;font-weight:600;background:rgba(6,78,59,0.8);color:#6ee7b7;border:1px solid rgba(4,120,87,0.6);">
-              ● Active Routine
-            </span>
-            <button class="btn-send" style="width:auto;height:auto;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:500;" onclick="executeJob('${j.id}')">
+          <div class="window-title">${j.id}.cron</div>
+          <span class="text-micro font-mono" style="padding:2px 8px;border-radius:9999px;background:rgba(34,197,94,0.15);color:var(--cursor-green);">
+            ● Active Routine
+          </span>
+        </div>
+        <div class="window-body flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <div style="font-size:15px;font-weight:600;color:var(--text-pure);">${j.title}</div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:2px;">${j.instruction}</div>
+            </div>
+            <button class="btn-send" style="height:32px;font-size:12px;" onclick="executeJob('${j.id}')">
               ▶ Run Now
             </button>
           </div>
-        </div>
-        <div class="flex items-center justify-between text-micro" style="font-family:monospace;color:var(--muted);padding-top:10px;border-top:1px solid var(--border);">
-          <div>SCHEDULE: <span style="color:var(--text);">${j.cron_expression}</span></div>
-          <div>TENANT DB: <span style="color:#818cf8;">${orgId}.db</span></div>
+          <div class="flex items-center justify-between text-micro font-mono" style="color:var(--text-subtle);padding-top:10px;border-top:1px solid var(--border);">
+            <div>SCHEDULE: <span style="color:var(--text);">${j.cron_expression}</span></div>
+            <div>TENANT DB: <span style="color:var(--cursor-amber);">${orgId}.db</span></div>
+          </div>
         </div>
       </div>
     `
@@ -204,7 +210,7 @@ async function executeJob(jobId) {
 async function loadConnections(orgId) {
   const container = document.getElementById("connections-grid-container");
   if (!container) return;
-  container.innerHTML = '<div style="grid-column:span 2;padding:40px;text-align:center;color:var(--muted);">Loading connections...</div>';
+  container.innerHTML = '<div style="grid-column:span 2;padding:40px;text-align:center;color:var(--text-muted);">Loading vault connections...</div>';
 
   try {
     const conns = await API.getConnections(orgId);
@@ -221,22 +227,31 @@ async function loadConnections(orgId) {
         const m = meta[c.provider] || { name: c.provider.toUpperCase(), cat: "Business Service", icon: "🔌" };
         const isConnected = c.status === "connected";
         return `
-        <div class="widget-card" style="flex-direction:row;align-items:center;justify-content:space-between;">
-          <div class="flex items-center gap-3">
-            <div style="height:48px;width:48px;border-radius:12px;background:var(--fill);display:grid;place-items:center;font-size:22px;border:1px solid var(--border);">
-              ${m.icon}
-            </div>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--text);">${m.name}</div>
-              <div style="font-size:11px;color:var(--muted);">${m.cat}</div>
-              ${c.account_identifier ? `<div style="font-size:10px;color:#818cf8;font-family:monospace;margin-top:2px;">${c.account_identifier}</div>` : ""}
-            </div>
+        <div class="cursor-window">
+          <div class="cursor-window-header">
+            <div class="window-dots"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+            <div class="window-title">${c.provider}.oauth</div>
+            <span class="text-micro font-mono" style="color:${isConnected ? "var(--cursor-green)" : "var(--text-subtle)"};">
+              ${isConnected ? "● Connected" : "○ Disconnected"}
+            </span>
           </div>
-          <div class="flex items-center gap-2">
-            ${isConnected ? `<button class="btn-icon" style="font-size:11px;width:auto;padding:0 8px;" onclick="inspectVault('${m.name}')">Vault 🔑</button>` : ""}
-            <button class="${isConnected ? "suggestion-pill" : "btn-send"}" style="width:auto;height:auto;padding:6px 14px;border-radius:8px;font-size:12px;" onclick="toggleConn('${c.provider}', '${c.status}')">
-              ${isConnected ? "Disconnect" : "Connect"}
-            </button>
+          <div class="window-body flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div style="height:44px;width:44px;border-radius:10px;background:var(--bg-well);display:grid;place-items:center;font-size:20px;border:1px solid var(--border);">
+                ${m.icon}
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text-pure);">${m.name}</div>
+                <div style="font-size:11px;color:var(--text-muted);">${m.cat}</div>
+                ${c.account_identifier ? `<div class="text-micro font-mono" style="color:var(--cursor-amber);margin-top:2px;">${c.account_identifier}</div>` : ""}
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              ${isConnected ? `<button class="btn-ghost-pill text-micro font-mono" style="height:30px;padding:0 10px;" onclick="inspectVault('${m.name}')">Vault 🔑</button>` : ""}
+              <button class="${isConnected ? "btn-ghost-pill" : "btn-send"}" style="height:30px;padding:0 12px;font-size:12px;" onclick="toggleConn('${c.provider}', '${c.status}')">
+                ${isConnected ? "Disconnect" : "Connect"}
+              </button>
+            </div>
           </div>
         </div>
       `;
@@ -309,21 +324,25 @@ async function loadTeamAndBilling(orgId) {
         .map((p) => {
           const isCurrent = billing?.plan_id === p.id;
           return `
-          <div class="widget-card" style="${isCurrent ? "border-color:#6366f1;box-shadow:0 0 20px rgba(99,102,241,0.2);" : ""}">
-            <div class="flex items-center justify-between">
-              <div style="font-weight:bold;font-size:15px;color:var(--text);">${p.name}</div>
-              ${isCurrent ? '<span style="font-size:10px;padding:2px 6px;border-radius:4px;background:#312e81;color:#a5b4fc;">Current</span>' : ""}
+          <div class="cursor-window" style="${isCurrent ? "border-color:var(--cursor-amber);box-shadow:0 0 24px var(--cursor-amber-glow);" : ""}">
+            <div class="cursor-window-header">
+              <div class="window-dots"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+              <div class="window-title">${p.id}.tier</div>
+              ${isCurrent ? '<span class="text-micro font-mono" style="padding:2px 8px;border-radius:9999px;background:rgba(224,107,58,0.2);color:var(--cursor-amber);">Current</span>' : ""}
             </div>
-            <div style="font-size:24px;font-weight:bold;color:var(--text);">$${p.price_monthly} <span style="font-size:12px;color:var(--muted);font-weight:normal;">/mo</span></div>
-            <div style="background:var(--bg);padding:8px 12px;border-radius:8px;font-size:11px;font-family:monospace;color:#34d399;">
-              ${p.credits_monthly.toLocaleString()} Credits · Up to ${p.max_members} Members
+            <div class="window-body flex flex-col gap-3" style="height:100%;">
+              <div style="font-weight:600;font-size:16px;color:var(--text-pure);">${p.name}</div>
+              <div style="font-size:24px;font-weight:700;color:var(--text-pure);">$${p.price_monthly} <span style="font-size:12px;color:var(--text-subtle);font-weight:normal;">/mo</span></div>
+              <div class="text-micro font-mono" style="background:var(--bg-well);padding:8px 10px;border-radius:6px;border:1px solid var(--border);color:var(--cursor-green);">
+                ${p.credits_monthly.toLocaleString()} Credits · Up to ${p.max_members} Seats
+              </div>
+              <ul style="list-style:none;padding:0;font-size:12px;color:var(--text-muted);display:flex;flex-direction:column;gap:6px;margin:8px 0;">
+                ${p.features.map((f) => `<li style="display:flex;align-items:center;gap:6px;"><span style="color:var(--cursor-amber);">✓</span> ${f}</li>`).join("")}
+              </ul>
+              <button class="${isCurrent ? "btn-ghost-pill" : "btn-send"}" style="width:100%;height:36px;font-size:12px;margin-top:auto;" ${isCurrent ? "disabled" : ""} onclick="upgradePlan('${p.id}')">
+                ${isCurrent ? "Active Plan" : "Choose Plan"}
+              </button>
             </div>
-            <ul style="list-style:none;padding:0;font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:6px;">
-              ${p.features.map((f) => `<li>✓ ${f}</li>`).join("")}
-            </ul>
-            <button class="btn-send" style="width:100%;border-radius:10px;height:38px;font-size:13px;font-weight:500;margin-top:auto;" ${isCurrent ? "disabled" : ""} onclick="upgradePlan('${p.id}')">
-              ${isCurrent ? "Active Plan" : "Choose Plan"}
-            </button>
           </div>
         `;
         })
@@ -394,7 +413,7 @@ async function sendPrompt(promptText) {
   const container = document.getElementById("drawer-messages-list");
   // User bubble
   const userDiv = document.createElement("div");
-  userDiv.style = "align-self:flex-end;max-width:85%;padding:10px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--border);font-size:13px;color:var(--text);margin-bottom:12px;";
+  userDiv.style = "align-self:flex-end;max-width:85%;padding:10px 16px;border-radius:14px;background:var(--bg-surface);border:1px solid var(--border-strong);font-size:13px;color:var(--text-pure);margin-bottom:12px;";
   userDiv.textContent = promptText;
   container.appendChild(userDiv);
 
@@ -402,11 +421,11 @@ async function sendPrompt(promptText) {
   const agentDiv = document.createElement("div");
   agentDiv.style = "align-self:flex-start;max-width:95%;margin-bottom:16px;display:flex;flex-direction:column;gap:8px;";
   agentDiv.innerHTML = `
-    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);font-weight:500;">
-      <span>●</span> <span>${state.currentOrg?.name || "Hashira"} Agent</span>
-      <span class="status-badge" style="background:var(--fill);padding:2px 6px;border-radius:4px;font-family:monospace;">thinking</span>
+    <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-subtle);font-family:var(--font-mono);">
+      <span style="color:var(--cursor-green);">●</span> <span style="color:var(--text);font-weight:600;">${state.currentOrg?.name || "Hashira"} Agent (Grok 4.7)</span>
+      <span class="status-badge" style="background:var(--fill-hover);padding:2px 8px;border-radius:9999px;border:1px solid var(--border);color:var(--cursor-amber);">● thinking</span>
     </div>
-    <div class="agent-content-text" style="font-size:13px;color:var(--text);line-height:1.6;white-space:pre-wrap;"></div>
+    <div class="agent-content-text" style="font-size:13px;color:var(--text);line-height:1.6;white-space:pre-wrap;background:var(--bg-surface);padding:14px 16px;border-radius:12px;border:1px solid var(--border);"></div>
   `;
   container.appendChild(agentDiv);
   container.scrollTop = container.scrollHeight;
@@ -423,31 +442,35 @@ async function sendPrompt(promptText) {
         container.scrollTop = container.scrollHeight;
       },
       (status) => {
-        statusBadge.textContent = status;
+        statusBadge.textContent = `● ${status}`;
       },
       (card) => {
         const cardDiv = document.createElement("div");
-        cardDiv.className = "widget-card";
-        cardDiv.style = "margin-top:10px;border-color:rgba(245,158,11,0.4);background:rgba(15,23,42,0.9);";
+        cardDiv.className = "cursor-window";
+        cardDiv.style = "margin-top:10px;border-color:rgba(224,107,58,0.4);";
         cardDiv.innerHTML = `
-          <div class="flex items-center justify-between">
-            <span style="font-size:12px;font-weight:600;color:#fcd34d;">⚠️ ${card.title}</span>
-            <span style="font-size:10px;font-family:monospace;padding:2px 6px;border-radius:4px;background:#451a03;color:#f59e0b;">RISK: ${card.risk}</span>
+          <div class="cursor-window-header">
+            <div class="window-dots"><span class="window-dot close"></span><span class="window-dot min"></span><span class="window-dot max"></span></div>
+            <div class="window-title">human-in-the-loop.action</div>
+            <span class="text-micro font-mono" style="padding:1px 6px;border-radius:4px;background:rgba(224,107,58,0.2);color:var(--cursor-amber);">RISK: ${card.risk}</span>
           </div>
-          <div style="font-size:12px;color:#cbd5e1;">${card.description}</div>
-          <div style="padding:10px;border-radius:8px;background:rgba(0,0,0,0.6);font-family:monospace;font-size:11px;color:#34d399;">
-            ${card.diff_preview}
-          </div>
-          <div class="flex gap-2">
-            <button class="btn-send" style="flex:1;height:34px;border-radius:8px;font-size:12px;" onclick="alert('Action approved and committed to Celery worker.')">Approve Action</button>
-            <button class="suggestion-pill" style="height:34px;" onclick="this.parentElement.parentElement.remove()">Reject</button>
+          <div class="window-body flex flex-col gap-3">
+            <div style="font-size:13px;font-weight:600;color:var(--text-pure);">⚠️ ${card.title}</div>
+            <div style="font-size:12px;color:var(--text-muted);">${card.description}</div>
+            <div class="diff-well">
+              ${card.diff_preview}
+            </div>
+            <div class="flex gap-2">
+              <button class="btn-send" style="flex:1;height:34px;font-size:12px;" onclick="alert('Action approved and committed to Celery worker.')">Approve Action</button>
+              <button class="btn-ghost-pill" style="height:34px;" onclick="this.parentElement.parentElement.parentElement.remove()">Reject</button>
+            </div>
           </div>
         `;
         agentDiv.appendChild(cardDiv);
         container.scrollTop = container.scrollHeight;
       },
       () => {
-        statusBadge.textContent = "done";
+        statusBadge.textContent = "● done";
         state.isStreaming = false;
       }
     );
@@ -525,30 +548,32 @@ function compileSyntheticApp(e) {
   const resultDiv = document.getElementById("synthetic-app-result");
   if (!input || !resultDiv) return;
 
-  resultDiv.innerHTML = '<div style="padding:30px;text-align:center;color:var(--muted);"><span style="display:inline-block;animation:spin 1s infinite;">⚙️</span> Synthesizing schema & interactive table...</div>';
+  resultDiv.innerHTML = '<div style="padding:30px;text-align:center;color:var(--text-muted);font-family:var(--font-mono);"><span style="display:inline-block;animation:spin 1s infinite;">⚙️</span> Synthesizing schema & interactive table...</div>';
 
   setTimeout(() => {
     resultDiv.innerHTML = `
-      <div class="widget-card" style="border-color:#6366f1;">
-        <div class="flex items-center justify-between pb-2" style="border-bottom:1px solid var(--border);">
-          <div>
-            <div style="font-weight:600;font-size:14px;color:var(--text);">${input.value}</div>
-            <div style="font-size:11px;color:#818cf8;font-family:monospace;">Generated Schema · Ready for Canvas</div>
-          </div>
-          <button class="btn-send" style="width:auto;height:auto;padding:6px 12px;border-radius:6px;font-size:11px;" onclick="alert('App pinned to Home Canvas!');closeModal();">Pin to Canvas</button>
+      <div class="cursor-window" style="border-color:var(--cursor-amber);">
+        <div class="cursor-window-header">
+          <div class="window-dots"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+          <div class="window-title">synthetic-unit.tsx</div>
+          <button class="btn-send" style="height:26px;padding:0 10px;font-size:11px;" onclick="alert('App pinned to Home Canvas!');closeModal();">Pin to Canvas</button>
         </div>
-        <table style="width:100%;font-size:11px;border-collapse:collapse;margin-top:8px;">
-          <thead>
-            <tr style="color:var(--muted);border-bottom:1px solid var(--border);text-align:left;">
-              <th style="padding:6px;">ID</th><th>Item</th><th>Assignee</th><th>Cost</th><th style="text-align:right;">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px;font-family:monospace;">#101</td><td>HVAC Service Part A</td><td>Samir</td><td>$450.00</td><td style="text-align:right;color:#34d399;">Active</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px;font-family:monospace;">#102</td><td>Filter replacement</td><td>Elena</td><td>$180.00</td><td style="text-align:right;color:#fcd34d;">Pending</td></tr>
-          </tbody>
-        </table>
+        <div class="window-body">
+          <div style="font-weight:600;font-size:14px;color:var(--text-pure);margin-bottom:2px;">${input.value}</div>
+          <div class="text-micro font-mono" style="color:var(--cursor-amber);margin-bottom:12px;">Generated Schema · Connected to Tenant SQLite DB</div>
+          <table style="width:100%;font-size:12px;border-collapse:collapse;font-family:var(--font-mono);">
+            <thead>
+              <tr style="color:var(--text-subtle);border-bottom:1px solid var(--border);text-align:left;">
+                <th style="padding:8px 6px;">ID</th><th>Item</th><th>Assignee</th><th>Cost</th><th style="text-align:right;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 6px;color:var(--text-subtle);">#101</td><td style="color:var(--text);">HVAC Service Part A</td><td>Samir</td><td>$450.00</td><td style="text-align:right;color:var(--cursor-green);">Active</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 6px;color:var(--text-subtle);">#102</td><td style="color:var(--text);">Filter replacement</td><td>Elena</td><td>$180.00</td><td style="text-align:right;color:var(--cursor-amber);">Pending</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     `;
-  }, 1000);
+  }, 800);
 }

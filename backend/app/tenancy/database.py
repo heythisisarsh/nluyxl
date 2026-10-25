@@ -159,6 +159,21 @@ def init_master_schema():
             conn.commit()
             logger.info("Initialized Master database with Hashira & Acme organizations.")
 
+        # Ensure demo org Acme Dynamics is present
+        cursor.execute("SELECT id FROM organizations WHERE slug = 'acme';")
+        if not cursor.fetchone():
+            acme_org_id = "org_acme"
+            cursor.execute("""
+            INSERT INTO organizations (id, name, slug, plan_id, credits_used, credits_limit, db_path)
+            VALUES (?, ?, ?, 'starter', 12400, 100000, ?);
+            """, (acme_org_id, "Acme Dynamics", "acme", os.path.join(TENANTS_DIR, f"{acme_org_id}.db")))
+
+            cursor.execute("""
+            INSERT OR IGNORE INTO organization_members (id, org_id, user_id, role)
+            VALUES (?, ?, ?, 'admin');
+            """, (f"mem_{uuid.uuid4().hex[:8]}", acme_org_id, "user_arshin"))
+            conn.commit()
+
     # Ensure default tenant databases are initialized
     get_tenant_connection("org_hashira")
     get_tenant_connection("org_acme")

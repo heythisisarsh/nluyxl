@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plyxl — Autonomous Business Operating System</title>
+  <title>Cursor by Plyxl — Autonomous Business Operating System</title>
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -66,58 +66,61 @@
 </defs>
 </svg>
 
-  <!-- ================= DUAL-RAIL SIDEBAR ================= -->
+  <!-- ================= DUAL-RAIL SIDEBAR (CURSOR THEME) ================= -->
   <aside class="sidebar">
     <div class="sidebar-frame">
       <!-- SLIM EDGE RAIL -->
       <div class="sidebar-edge">
+        <!-- Cursor 3D Isometric Cube Toggle -->
         <button id="sidebar-toggle-btn" class="btn-icon" title="Toggle Sidebar ⌘B">
-          <svg style="height:16px;width:16px;" fill="currentColor" viewBox="0 0 256 256">
-            <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,56H80V200H40ZM216,200H96V56H216V200Z"/>
+          <svg class="shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <polygon points="12 2, 21 7.2, 12 12.4, 3 7.2" fill="#ffffff"/>
+            <polygon points="12 12.4, 21 7.2, 21 17.6, 12 22.8" fill="#888888"/>
+            <polygon points="3 7.2, 12 12.4, 12 22.8, 3 17.6" fill="#444444"/>
           </svg>
         </button>
 
-        <button class="squircle org-credits-pill" onclick="switchView('team')" style="margin-top:8px;height:24px;min-width:32px;display:grid;place-items:center;background:var(--fill);color:var(--muted);font-size:11px;font-weight:600;font-family:monospace;border:none;cursor:pointer;">
+        <button class="org-credits-pill" onclick="switchView('team')" title="AI Credits Quota" style="margin-top:6px;height:24px;min-width:32px;display:grid;place-items:center;background:var(--fill);color:var(--text-muted);font-size:11px;font-weight:600;font-family:var(--font-mono);border:1px solid var(--border);border-radius:9999px;cursor:pointer;">
           20k
         </button>
 
-        <div style="padding-top:12px;">
-          <button onclick="openDrawer()" class="btn-send" title="New chat ⌘J" style="height:32px;width:32px;">
-            <svg style="height:16px;width:16px;" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M232.49,55.51l-32-32a12,12,0,0,0-17,0l-96,96A12,12,0,0,0,84,128v32a12,12,0,0,0,12,12h32a12,12,0,0,0,8.49-3.51l96-96A12,12,0,0,0,232.49,55.51ZM192,49l15,15L196,75,181,60Zm-69,99H108V133l56-56,15,15Zm105-7.43V208a20,20,0,0,1-20,20H48a20,20,0,0,1-20-20V48A20,20,0,0,1,48,28h67.43a12,12,0,0,1,0,24H52V204H204V140.57a12,12,0,0,1,24,0Z"/>
-            </svg>
+        <div style="padding-top:8px;">
+          <button onclick="openDrawer()" class="btn-send" title="New chat ⌘J" style="height:32px;width:32px;padding:0;">
+            <span style="font-size:16px;line-height:1;">+</span>
           </button>
         </div>
 
         <nav style="display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:12px;">
-          <button class="nav-link btn-icon active" data-view="home" title="Home Canvas">🏠</button>
-          <button class="nav-link btn-icon" data-view="jobs" title="Autonomous Jobs">🐑</button>
-          <button class="nav-link btn-icon" data-view="connections" title="Connections">🔌</button>
+          <button class="nav-link btn-icon active" data-view="home" title="Canvas (Home)">🏠</button>
+          <button class="nav-link btn-icon" data-view="jobs" title="Autonomous Jobs">⚡</button>
+          <button class="nav-link btn-icon" data-view="connections" title="Vault & Integrations">🔒</button>
           <button class="nav-link btn-icon" data-view="team" title="Team & Billing">👥</button>
         </nav>
       </div>
 
       <!-- EXPANDED PANEL -->
       <div class="sidebar-panel">
-        <div class="flex items-center justify-between" style="padding:16px 16px 12px 16px;border-bottom:1px solid var(--border);">
-          <!-- Logo Lockup -->
+        <div class="flex items-center justify-between" style="padding:14px 16px 12px 16px;border-bottom:1px solid var(--border);">
+          <!-- Cursor Logo Lockup -->
           <div class="flex items-center gap-2">
-            <svg class="psheep shrink-0 select-none w-mono" width="20" height="20" viewBox="420.2 207.1 333.1 333.1">
-              <g transform="rotate(9 588.7 385.8)"><use fill="var(--sheep-fleece)" href="#psheep-2"></use><use fill="var(--sheep-face)" href="#psheep-3" transform="translate(0 -14)"></use></g>
+            <svg class="shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <polygon points="12 2, 21 7.2, 12 12.4, 3 7.2" fill="#ffffff"/>
+              <polygon points="12 12.4, 21 7.2, 21 17.6, 12 22.8" fill="#888888"/>
+              <polygon points="3 7.2, 12 12.4, 12 22.8, 3 17.6" fill="#444444"/>
             </svg>
-            <span style="font-weight:bold;font-size:15px;letter-spacing:-0.02em;">Plyxl</span>
+            <span style="font-weight:700;font-size:13px;letter-spacing:0.08em;color:#fff;">CURSOR</span>
           </div>
 
           <!-- Org Selector Pill -->
           <div style="position:relative;">
-            <button onclick="toggleOrgDropdown()" class="nav-item" style="height:28px;padding:0 8px;max-width:130px;background:var(--fill);">
-              <span class="org-name-text truncate" style="font-size:12px;font-weight:500;">Hashira</span>
-              <span style="font-size:9px;color:var(--subtle);">▼</span>
+            <button onclick="toggleOrgDropdown()" class="nav-item" style="height:28px;padding:0 10px;max-width:140px;background:var(--fill);border-radius:9999px;border:1px solid var(--border);">
+              <span class="org-name-text truncate" style="font-size:12px;font-weight:500;color:var(--text-pure);">Hashira</span>
+              <span style="font-size:9px;color:var(--text-subtle);">▾</span>
             </button>
 
             <!-- Dropdown -->
-            <div id="org-dropdown-menu" style="display:none;position:absolute;top:32px;left:0;width:220px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 12px 30px rgba(0,0,0,0.7);z-index:100;">
-              <div style="font-size:10px;text-transform:uppercase;color:var(--muted);padding:4px 8px;font-weight:600;">Switch Organization</div>
+            <div id="org-dropdown-menu" style="display:none;position:absolute;top:34px;left:0;width:220px;background:var(--bg-surface);border:1px solid var(--border-strong);border-radius:12px;padding:6px;box-shadow:0 16px 40px rgba(0,0,0,0.8);z-index:100;">
+              <div style="font-size:10px;text-transform:uppercase;color:var(--text-subtle);padding:6px 8px;font-weight:600;letter-spacing:0.04em;">Switch Organization</div>
               <div id="org-dropdown-list"></div>
               <div style="margin:4px 0;border-top:1px solid var(--border);"></div>
               <button class="nav-item" onclick="openModal('create-org-modal');toggleOrgDropdown(false);">+ New Organization</button>
@@ -125,29 +128,29 @@
           </div>
         </div>
 
-        <!-- Primary New Chat Button -->
-        <div style="padding:12px 12px 6px 12px;">
-          <button onclick="openDrawer()" class="btn-send" style="width:100%;height:36px;border-radius:9999px;font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:space-between;padding:0 14px;">
+        <!-- Primary New Chat Button (White Pill) -->
+        <div style="padding:14px 14px 8px 14px;">
+          <button onclick="openDrawer()" class="btn-send" style="width:100%;height:36px;border-radius:9999px;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:space-between;padding:0 16px;">
             <span>New chat</span>
-            <span style="font-size:11px;opacity:0.6;font-family:sans-serif;">⌘J</span>
+            <span style="font-size:11px;opacity:0.6;font-family:var(--font-mono);">⌘J</span>
           </button>
         </div>
 
-        <!-- Nav items -->
+        <!-- Navigation Links -->
         <nav style="display:flex;flex-direction:column;gap:2px;padding:8px 10px;">
           <button class="nav-item nav-link active" data-view="home"><span>🏠</span> <span>Home Canvas</span></button>
-          <button class="nav-item nav-link" data-view="jobs"><span>🐑</span> <span>Autonomous Jobs</span></button>
-          <button class="nav-item nav-link" data-view="connections"><span>🔌</span> <span>Connections</span></button>
-          <button class="nav-item nav-link" data-view="team"><span>👥</span> <span>Team & Billing</span></button>
+          <button class="nav-item nav-link" data-view="jobs"><span>⚡</span> <span>Autonomous Jobs</span></button>
+          <button class="nav-item nav-link" data-view="connections"><span>🔒</span> <span>Vault &amp; OAuth</span></button>
+          <button class="nav-item nav-link" data-view="team"><span>👥</span> <span>Team &amp; Billing</span></button>
         </nav>
 
         <!-- Profile footer -->
         <div style="margin-top:auto;padding:12px;border-top:1px solid var(--border);">
-          <div onclick="switchView('team')" class="flex items-center gap-2" style="cursor:pointer;padding:6px;border-radius:8px;">
-            <div style="height:28px;width:28px;border-radius:50%;background:#334155;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:bold;">A</div>
+          <div onclick="switchView('team')" class="flex items-center gap-2" style="cursor:pointer;padding:6px 8px;border-radius:8px;">
+            <div style="height:28px;width:28px;border-radius:50%;background:#27272a;color:#fff;display:grid;place-items:center;font-size:11px;font-weight:bold;border:1px solid var(--border);">A</div>
             <div class="truncate">
-              <div style="font-size:12px;font-weight:500;">Arshin</div>
-              <div class="org-name-text" style="font-size:10px;color:var(--muted);">Hashira Admin</div>
+              <div style="font-size:12px;font-weight:500;color:var(--text-pure);">Arshin</div>
+              <div class="org-name-text" style="font-size:11px;color:var(--text-subtle);">Hashira Admin</div>
             </div>
           </div>
         </div>
@@ -158,184 +161,344 @@
   <!-- ================= MAIN VIEWPORT ================= -->
   <main class="main-viewport">
 
-    <!-- 1. VIEW: HOME CANVAS -->
-    <section id="view-home" class="view-section" style="display:flex;flex-direction:column;align-items:center;padding:40px 20px;max-width:960px;margin:0 auto;width:100%;gap:40px;">
+    <!-- TOP STICKY CHROME -->
+    <header class="cursor-topbar">
+      <div class="flex items-center gap-2 text-micro font-mono" style="color:var(--text-subtle);">
+        <span style="color:var(--text-muted);font-weight:600;">Cursor</span>
+        <span>/</span>
+        <span class="org-name-text" style="color:var(--text);">Hashira</span>
+        <span>/</span>
+        <span class="org-tenant-id" style="color:var(--cursor-amber);">org_hashira.db</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Model Selector Pill (Direct from Cursor reference) -->
+        <div class="ask-model-chip" onclick="openDrawer('What models are currently active in this workspace?')">
+          <span style="height:6px;width:6px;border-radius:50%;background:#22c55e;"></span>
+          <span>Agent: Grok 4.7</span>
+          <span style="font-size:9px;color:var(--text-subtle);">▾</span>
+        </div>
+
+        <button onclick="switchView('team')" class="btn-ghost-pill text-micro font-mono" style="height:28px;padding:0 10px;">
+          <span class="org-credits-pill">20k</span> Credits
+        </button>
+        <button onclick="openDrawer()" class="btn-send" style="height:28px;padding:0 12px;font-size:11px;">
+          New chat ⌘J
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= 1. VIEW: HOME CANVAS ================= -->
+    <section id="view-home" class="view-section" style="display:flex;flex-direction:column;align-items:center;padding:50px 24px 80px 24px;max-width:1040px;margin:0 auto;width:100%;gap:44px;">
       
-      <!-- Greeting -->
-      <div style="text-align:center;display:flex;flex-direction:column;gap:10px;">
-        <h1 class="font-display text-display" style="letter-spacing:-0.03em;">Good morning, Arshin</h1>
-        <p class="text-subhead" style="color:var(--muted);max-width:440px;margin:0 auto;">
-          <span class="org-name-text">Hashira</span> Agent doesn’t know the business yet. Tell it what you need and it builds it.
+      <!-- Authentic Cursor Hero Title & Subtitle -->
+      <div style="text-align:center;display:flex;flex-direction:column;gap:14px;">
+        <h1 class="text-display" style="color:var(--text-pure);max-width:760px;margin:0 auto;font-weight:500;letter-spacing:-0.035em;">
+          Cursor is your agent for building ambitious software.
+        </h1>
+        <p class="text-subhead" style="color:var(--text-muted);max-width:540px;margin:0 auto;line-height:1.6;">
+          Accelerate business operations by handing off tasks to <span class="org-name-text">Hashira</span> Agent, while you focus on making decisions.
         </p>
       </div>
 
-      <!-- The Authentic Voice Beam Prompt Box -->
-      <form id="ask-hero-form" class="w-full" style="max-width:680px;">
+      <!-- The Signature Cursor Prompt Container -->
+      <form id="ask-hero-form" class="w-full" style="max-width:720px;">
         <div class="ask-input-box">
-          <textarea id="ask-prompt-input" class="ask-textarea" rows="1" placeholder="Ask Hashira Agent"></textarea>
-          <div class="ask-actions">
-            <button type="button" class="btn-icon" title="Ideas to try" onclick="openDrawer('Suggest automated routines for our accounting and billing operations.')">💡</button>
-            <button type="button" class="btn-icon" title="Say it instead of typing" onclick="alert('Voice recognition microphone active.')">🎙️</button>
-            <button type="button" class="btn-icon" title="Attach file" onclick="alert('Select document or spreadsheet to analyze.')">📎</button>
-            <button type="submit" class="btn-send" title="Send (Enter)">↑</button>
+          <textarea id="ask-prompt-input" class="ask-textarea" rows="2" placeholder="Plan, search, build anything for Hashira..."></textarea>
+          <div class="ask-toolbar">
+            <div class="ask-model-chip" onclick="openDrawer('Model settings')">
+              <span style="height:6px;width:6px;border-radius:50%;background:#22c55e;"></span>
+              <span>Agent Grok 4.7</span>
+              <span style="font-size:9px;color:var(--text-subtle);">▾</span>
+            </div>
+            <div class="ask-actions">
+              <button type="button" class="btn-icon" title="Ideas to try" onclick="openDrawer('Suggest automated routines for our accounting and billing operations.')">💡</button>
+              <button type="button" class="btn-icon" title="Voice dictation" onclick="alert('Voice recognition microphone beam active.')">🎙️</button>
+              <button type="button" class="btn-icon" title="Attach file" onclick="alert('Select document or spreadsheet to analyze.')">📎</button>
+              <button type="submit" class="btn-send" title="Send (Enter)">↑</button>
+            </div>
           </div>
         </div>
       </form>
 
       <!-- Quick Suggestion Pills -->
       <div class="flex items-center justify-center gap-2" style="flex-wrap:wrap;">
-        <button class="suggestion-pill" onclick="openDrawer('Every Monday at 8 chase overdue invoices')">Chase overdue invoices (&gt;14d)</button>
-        <button class="suggestion-pill" onclick="openDrawer('Check revenue metrics for Q3')">Summarize weekly revenue metrics</button>
-        <button class="suggestion-pill" onclick="openDrawer('Schedule a team meeting tomorrow at 2pm')">Sync Google Calendar &amp; book sync</button>
-        <button class="suggestion-pill" onclick="openDrawer('Audit active billing connections and check sync status')">Connect QuickBooks &amp; Stripe</button>
+        <button class="suggestion-pill" onclick="openDrawer('Every Monday at 8 chase overdue invoices')">Chase overdue invoices (&gt;14d) <span style="color:var(--cursor-amber);">→</span></button>
+        <button class="suggestion-pill" onclick="openDrawer('Check revenue metrics for Q3')">Summarize weekly revenue metrics <span style="color:var(--cursor-amber);">→</span></button>
+        <button class="suggestion-pill" onclick="openDrawer('Schedule a team meeting tomorrow at 2pm')">Sync Google Calendar &amp; book sync <span style="color:var(--cursor-amber);">→</span></button>
+        <button class="suggestion-pill" onclick="openDrawer('Audit active billing connections and check sync status')">Connect QuickBooks &amp; Stripe <span style="color:var(--cursor-amber);">→</span></button>
+      </div>
+
+      <!-- Trusted by Teams Row (Direct from ui-reference-cursor.png) -->
+      <div class="w-full" style="padding:20px 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);text-align:center;">
+        <div style="font-size:11px;text-transform:uppercase;color:var(--text-subtle);font-weight:600;letter-spacing:0.06em;margin-bottom:16px;">
+          Trusted every day by teams that build world-class software
+        </div>
+        <div class="trusted-row">
+          <span class="trusted-logo">stripe</span>
+          <span class="trusted-logo">DATADOG</span>
+          <span class="trusted-logo">Linear</span>
+          <span class="trusted-logo">NVIDIA</span>
+          <span class="trusted-logo">Figma</span>
+          <span class="trusted-logo">ramp</span>
+          <span class="trusted-logo">DECAGON</span>
+          <span class="trusted-logo">Adobe</span>
+        </div>
       </div>
 
       <!-- 8-Column Springboard App Grid -->
-      <div class="w-full" style="padding-top:20px;border-top:1px solid var(--border);">
-        <div style="text-align:center;font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:600;letter-spacing:0.05em;margin-bottom:16px;">
+      <div class="w-full">
+        <div style="text-align:center;font-size:11px;text-transform:uppercase;color:var(--text-subtle);font-weight:600;letter-spacing:0.06em;margin-bottom:16px;">
           <span class="org-name-text">Hashira</span> Operating System Springboard
         </div>
         <div class="grid-8">
           <button class="app-tile" onclick="openDrawer('Audit invoice status across QuickBooks and list receivables.')">
-            <div class="app-icon" style="background:rgba(6,78,59,0.3);color:#6ee7b7;">🧾</div>
-            <span class="text-micro" style="color:var(--muted);">Invoices</span>
+            <div class="app-icon" style="color:#6ee7b7;">🧾</div>
+            <span class="text-micro" style="color:var(--text-muted);">Invoices</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Check today's meetings and team schedules.')">
-            <div class="app-icon" style="background:rgba(30,58,138,0.3);color:#93c5fd;">📅</div>
-            <span class="text-micro" style="color:var(--muted);">Calendar</span>
+            <div class="app-icon" style="color:#93c5fd;">📅</div>
+            <span class="text-micro" style="color:var(--text-muted);">Calendar</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Triage unread high-priority emails.')">
-            <div class="app-icon" style="background:rgba(127,29,29,0.3);color:#fca5a5;">✉️</div>
-            <span class="text-micro" style="color:var(--muted);">Gmail</span>
+            <div class="app-icon" style="color:#fca5a5;">✉️</div>
+            <span class="text-micro" style="color:var(--text-muted);">Gmail</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Show ARR growth and burn rate analysis.')">
-            <div class="app-icon" style="background:rgba(88,28,135,0.3);color:#d8b4fe;">📈</div>
-            <span class="text-micro" style="color:var(--muted);">Analytics</span>
+            <div class="app-icon" style="color:#d8b4fe;">📈</div>
+            <span class="text-micro" style="color:var(--text-muted);">Analytics</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Review recent Stripe payouts and customer churn.')">
-            <div class="app-icon" style="background:rgba(49,46,129,0.3);color:#a5b4fc;">💳</div>
-            <span class="text-micro" style="color:var(--muted);">Billing</span>
+            <div class="app-icon" style="color:#a5b4fc;">💳</div>
+            <span class="text-micro" style="color:var(--text-muted);">Billing</span>
           </button>
           <button class="app-tile" onclick="openDrawer('Broadcast urgent update to #general Slack channel.')">
-            <div class="app-icon" style="background:rgba(120,53,15,0.3);color:#fcd34d;">💬</div>
-            <span class="text-micro" style="color:var(--muted);">Slack</span>
+            <div class="app-icon" style="color:#fcd34d;">💬</div>
+            <span class="text-micro" style="color:var(--text-muted);">Slack</span>
           </button>
           <button class="app-tile" onclick="openDrawer('List blocking engineering bugs from Linear.')">
-            <div class="app-icon" style="background:rgba(15,23,42,0.6);color:#cbd5e1;">⚡</div>
-            <span class="text-micro" style="color:var(--muted);">Linear</span>
+            <div class="app-icon" style="color:#cbd5e1;">⚡</div>
+            <span class="text-micro" style="color:var(--text-muted);">Linear</span>
           </button>
           <button class="app-tile" onclick="openModal('synthetic-modal')">
-            <div class="app-icon" style="background:rgba(24,24,27,0.8);border-style:dashed;color:#a1a1aa;">✨</div>
-            <span class="text-micro" style="color:var(--muted);">Build App</span>
+            <div class="app-icon" style="border-style:dashed;color:#f59e0b;">✨</div>
+            <span class="text-micro" style="color:var(--text-muted);">Build App</span>
           </button>
         </div>
       </div>
 
-      <!-- Live 12-Column Operational Canvas Units -->
-      <div class="w-full" style="padding-top:20px;border-top:1px solid var(--border);">
-        <div class="flex items-center justify-between" style="margin-bottom:16px;">
+      <!-- Live Operational Canvas Units as Cursor Desktop Windows -->
+      <div class="w-full">
+        <div class="flex items-center justify-between" style="margin-bottom:18px;">
           <div>
-            <h2 style="font-size:16px;font-weight:bold;color:var(--text);">Workspace Live Units</h2>
-            <p class="text-micro" style="color:var(--muted);">Live operational widgets connected to <span class="org-tenant-id" style="color:#818cf8;font-family:monospace;">org_hashira.db</span></p>
+            <h2 style="font-size:17px;font-weight:600;color:var(--text-pure);letter-spacing:-0.02em;">Workspace Live Units</h2>
+            <p class="text-micro" style="color:var(--text-muted);">Live operational widgets connected to <span class="org-tenant-id" style="color:var(--cursor-amber);font-family:var(--font-mono);">org_hashira.db</span></p>
           </div>
-          <button class="suggestion-pill" onclick="openModal('synthetic-modal')">+ Add Synthetic Unit</button>
+          <button class="btn-ghost-pill text-micro" onclick="openModal('synthetic-modal')">+ Add Synthetic Unit</button>
         </div>
 
         <div class="grid-2">
-          <!-- WIDGET 1: FINANCIAL PULSE -->
-          <div class="widget-card">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span style="height:8px;width:8px;border-radius:50%;background:#34d399;"></span>
-                <span style="font-size:13px;font-weight:600;">Financial Pulse &amp; Cashflow</span>
+          <!-- WIDGET 1: FINANCIAL PULSE (CURSOR WINDOW) -->
+          <div class="cursor-window">
+            <div class="cursor-window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot min"></span>
+                <span class="window-dot max"></span>
               </div>
-              <span class="text-micro" style="color:var(--muted);">QuickBooks &amp; Stripe</span>
+              <div class="window-title">financial-pulse.tsx</div>
+              <span class="text-micro font-mono" style="color:var(--cursor-green);">● Live Sync</span>
             </div>
-            <div class="flex items-baseline gap-2">
-              <span style="font-size:26px;font-weight:bold;">$42,850</span>
-              <span class="text-micro" style="color:#34d399;font-weight:600;">▲ +12.4% vs last month</span>
-            </div>
-            <div style="height:90px;width:100%;">
-              <svg width="100%" height="100%" viewBox="0 0 400 90" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="finGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#6366f1" stop-opacity="0.0"/>
-                  </linearGradient>
-                </defs>
-                <path d="M 0,80 Q 100,60 200,40 T 400,10 L 400,90 L 0,90 Z" fill="url(#finGrad)"/>
-                <path d="M 0,80 Q 100,60 200,40 T 400,10" fill="none" stroke="#818cf8" stroke-width="2.5"/>
-              </svg>
-            </div>
-            <div class="flex items-center justify-between text-micro" style="font-family:monospace;color:var(--muted);padding-top:8px;border-top:1px solid var(--border);">
-              <div>Net ARR: <strong style="color:var(--text);">$514k</strong></div>
-              <div>Burn: <strong style="color:var(--text);">$21.4k/mo</strong></div>
-              <div>Runway: <strong style="color:#34d399;">28 Mo</strong></div>
+            <div class="window-body flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span style="font-size:11px;text-transform:uppercase;color:var(--text-subtle);font-weight:600;">Financial Pulse</span>
+                  <div class="flex items-baseline gap-2 mt-1">
+                    <span style="font-size:26px;font-weight:700;color:var(--text-pure);">$42,850</span>
+                    <span class="text-micro" style="color:var(--cursor-green);font-weight:600;">▲ +12.4% vs last month</span>
+                  </div>
+                </div>
+                <span class="text-micro font-mono" style="color:var(--text-subtle);">QuickBooks &amp; Stripe</span>
+              </div>
+
+              <!-- Live Financial Chart -->
+              <div style="height:90px;width:100%;">
+                <svg width="100%" height="100%" viewBox="0 0 400 90" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="finGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#e06b3a" stop-opacity="0.25"/>
+                      <stop offset="100%" stop-color="#e06b3a" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M 0,80 Q 100,60 200,40 T 400,10 L 400,90 L 0,90 Z" fill="url(#finGrad)"/>
+                  <path d="M 0,80 Q 100,60 200,40 T 400,10" fill="none" stroke="#e06b3a" stroke-width="2.5"/>
+                </svg>
+              </div>
+
+              <div class="flex items-center justify-between text-micro font-mono" style="color:var(--text-subtle);padding-top:10px;border-top:1px solid var(--border);">
+                <div>Net ARR: <strong style="color:var(--text);">$514k</strong></div>
+                <div>Burn: <strong style="color:var(--text);">$21.4k/mo</strong></div>
+                <div>Runway: <strong style="color:var(--cursor-green);">28 Mo</strong></div>
+              </div>
+
+              <div>
+                <a class="cursor-link" onclick="openDrawer('Analyze financial pulse and cashflow runway')">Learn about financial automation →</a>
+              </div>
             </div>
           </div>
 
-          <!-- WIDGET 2: INVOICING ROUTINE (HITL) -->
-          <div class="widget-card">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span style="height:8px;width:8px;border-radius:50%;background:#f59e0b;" class="animate-pulse"></span>
-                <span style="font-size:13px;font-weight:600;">Active Routine: Overdue Invoices</span>
+          <!-- WIDGET 2: OVERDUE INVOICES (CURSOR WINDOW - HITL) -->
+          <div class="cursor-window">
+            <div class="cursor-window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot min"></span>
+                <span class="window-dot max"></span>
               </div>
-              <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-family:monospace;background:#451a03;color:#fcd34d;">HITL Review</span>
+              <div class="window-title">overdue-invoices.job</div>
+              <span class="text-micro font-mono" style="padding:1px 6px;border-radius:4px;background:rgba(224,107,58,0.2);color:var(--cursor-amber);">HITL Review</span>
             </div>
-            <p class="text-micro" style="color:var(--muted);line-height:1.5;">
-              QuickBooks audit detected <strong style="color:var(--text);">3 unpaid invoices</strong> past 14 days due date ($8,450 total). Ready to dispatch email sequence.
+            <div class="window-body flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span style="font-size:13px;font-weight:600;color:var(--text-pure);">Active Routine: Overdue Invoices</span>
+                <span class="text-micro font-mono" style="color:var(--text-subtle);">● Thought for 4s</span>
+              </div>
+              <p class="text-micro" style="color:var(--text-muted);line-height:1.5;">
+                QuickBooks audit detected <strong style="color:var(--text-pure);">3 unpaid invoices</strong> past 14 days due date ($8,450 total). Ready to dispatch sequence.
+              </p>
+              
+              <!-- Diff Well -->
+              <div class="diff-well">
+                <div class="diff-add">+ Inv #1042: Acclaim Logistics — $3,200 (19d overdue)</div>
+                <div class="diff-add">+ Inv #1045: Vertex Labs — $4,100 (16d overdue)</div>
+                <div class="diff-add">+ Inv #1048: Pioneer Tech — $1,150 (14d overdue)</div>
+              </div>
+
+              <div class="flex gap-2" style="margin-top:2px;">
+                <button class="btn-send" style="flex:1;height:34px;font-size:12px;" onclick="alert('Invoices approved! Reminder emails dispatched via Gmail API.')">Approve &amp; Send (3)</button>
+                <button class="btn-ghost-pill" style="height:34px;" onclick="openDrawer('Show invoice breakdown for overdue clients.')">Details</button>
+              </div>
+
+              <div>
+                <a class="cursor-link" onclick="openDrawer('Every Monday at 8 chase overdue invoices')">Learn about Automations →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- WIDGET 3: PRIORITY MAILBOX (CURSOR WINDOW) -->
+          <div class="cursor-window">
+            <div class="cursor-window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot min"></span>
+                <span class="window-dot max"></span>
+              </div>
+              <div class="window-title">mailbox-triage.ts</div>
+              <span class="text-micro font-mono" style="color:var(--text-subtle);">Gmail API</span>
+            </div>
+            <div class="window-body flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span style="font-size:13px;font-weight:600;color:var(--text-pure);">Priority Mailbox Triage</span>
+                <span class="text-micro font-mono" style="color:var(--cursor-red);">2 Unread</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="padding:10px 12px;border-radius:var(--radius-sm);background:var(--bg-well);border:1px solid var(--border);">
+                  <div class="flex items-center justify-between"><strong style="font-size:12px;color:var(--text);">Marcus at Harbourview</strong><span class="text-micro font-mono" style="color:var(--text-subtle);">18m ago</span></div>
+                  <div class="text-micro" style="color:var(--text-muted);margin-top:2px;">HVAC maintenance contract scope review</div>
+                </div>
+                <div style="padding:10px 12px;border-radius:var(--radius-sm);background:var(--bg-well);border:1px solid var(--border);">
+                  <div class="flex items-center justify-between"><strong style="font-size:12px;color:var(--text);">Elena at Cedar Park</strong><span class="text-micro font-mono" style="color:var(--text-subtle);">1h ago</span></div>
+                  <div class="text-micro" style="color:var(--text-muted);margin-top:2px;">Invoice #1094 credit discrepancy query</div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between" style="margin-top:4px;">
+                <a class="cursor-link" onclick="openDrawer('Draft replies to unread mailbox threads.')">Learn about cloud agents →</a>
+                <button class="btn-ghost-pill text-micro" onclick="openDrawer('Draft replies to unread mailbox threads.')">✨ AI Draft All</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- WIDGET 4: TODAY'S AGENDA (CURSOR WINDOW) -->
+          <div class="cursor-window">
+            <div class="cursor-window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot min"></span>
+                <span class="window-dot max"></span>
+              </div>
+              <div class="window-title">today-agenda.cal</div>
+              <button onclick="openDrawer('Schedule team sync tomorrow at 10am.')" style="background:none;border:none;color:var(--cursor-amber);font-size:11px;cursor:pointer;">+ Schedule</button>
+            </div>
+            <div class="window-body flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span style="font-size:13px;font-weight:600;color:var(--text-pure);">Today's Agenda &amp; Calendar</span>
+                <span class="text-micro font-mono" style="color:var(--cursor-blue);">Google Cal</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="padding:10px 12px;border-radius:var(--radius-sm);background:var(--bg-well);border:1px solid var(--border);" class="flex items-center justify-between">
+                  <div>
+                    <div style="font-size:12px;font-weight:500;color:var(--text);">Executive Sprint Review &amp; Sync</div>
+                    <div class="text-micro font-mono" style="color:var(--text-subtle);">10:00 AM - 10:45 AM</div>
+                  </div>
+                  <span class="text-micro font-mono" style="padding:2px 8px;border-radius:9999px;background:rgba(59,130,246,0.15);color:var(--cursor-blue);">5 People</span>
+                </div>
+                <div style="padding:10px 12px;border-radius:var(--radius-sm);background:var(--bg-well);border:1px solid var(--border);" class="flex items-center justify-between">
+                  <div>
+                    <div style="font-size:12px;font-weight:500;color:var(--text);">Client Review: Harbourview</div>
+                    <div class="text-micro font-mono" style="color:var(--text-subtle);">02:00 PM - 02:30 PM</div>
+                  </div>
+                  <span class="text-micro font-mono" style="padding:2px 8px;border-radius:9999px;background:rgba(168,85,247,0.15);color:var(--cursor-purple);">Client</span>
+                </div>
+              </div>
+              <div>
+                <a class="cursor-link" onclick="openDrawer('Book synchronization with client')">Book calendar sync →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial Quotes Grid (Directly from ui-reference-cursor.png) -->
+      <div class="w-full" style="padding-top:20px;border-top:1px solid var(--border-subtle);">
+        <div style="text-align:center;margin-bottom:28px;">
+          <h3 class="text-title" style="color:var(--text-pure);">The new way to build software.</h3>
+        </div>
+        <div class="grid-3">
+          <div class="testimonial-card">
+            <p class="text-small" style="color:var(--text);line-height:1.6;">
+              "Cursor quickly grew from hundreds to thousands of extremely enthusiastic Stripe employees. We spend more on R&amp;D and software creation than any other undertaking, and there’s significant economic outcomes when making that process more efficient."
             </p>
-            <div style="padding:10px;border-radius:8px;background:rgba(0,0,0,0.5);font-family:monospace;font-size:11px;color:#34d399;line-height:1.5;">
-              <div>• Inv #1042: Acclaim Logistics — $3,200 (19d overdue)</div>
-              <div>• Inv #1045: Vertex Labs — $4,100 (16d overdue)</div>
-              <div>• Inv #1048: Pioneer Tech — $1,150 (14d overdue)</div>
-            </div>
-            <div class="flex gap-2">
-              <button class="btn-send" style="flex:1;height:34px;border-radius:8px;font-size:12px;font-weight:500;" onclick="alert('Invoices approved! Reminder emails dispatched via Gmail API.')">Approve &amp; Send (3)</button>
-              <button class="suggestion-pill" style="height:34px;" onclick="openDrawer('Show invoice breakdown for overdue clients.')">Details</button>
+            <div class="flex items-center gap-3">
+              <div style="height:32px;width:32px;border-radius:50%;background:#3f3f46;display:grid;place-items:center;font-size:11px;font-weight:bold;">PC</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-pure);">Patrick Collison</div>
+                <div class="text-micro" style="color:var(--text-subtle);">Co-Founder &amp; CEO, Stripe</div>
+              </div>
             </div>
           </div>
 
-          <!-- WIDGET 3: PRIORITY MAILBOX -->
-          <div class="widget-card">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span style="height:8px;width:8px;border-radius:50%;background:#ef4444;"></span>
-                <span style="font-size:13px;font-weight:600;">Priority Mailbox Triage</span>
-              </div>
-              <span class="text-micro" style="color:var(--muted);font-family:monospace;">Gmail API</span>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="padding:8px 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);">
-                <div class="flex items-center justify-between"><strong style="font-size:12px;">Marcus at Harbourview</strong><span class="text-micro" style="color:var(--muted);">18m ago</span></div>
-                <div class="text-micro" style="color:#818cf8;">HVAC maintenance contract scope review</div>
-              </div>
-              <div style="padding:8px 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);">
-                <div class="flex items-center justify-between"><strong style="font-size:12px;">Elena at Cedar Park</strong><span class="text-micro" style="color:var(--muted);">1h ago</span></div>
-                <div class="text-micro" style="color:#818cf8;">Invoice #1094 credit discrepancy query</div>
+          <div class="testimonial-card">
+            <p class="text-small" style="color:var(--text);line-height:1.6;">
+              "My favorite enterprise AI service is Cursor. Every one of our engineers, some 40,000, are now assisted by AI and our productivity has gone up incredibly."
+            </p>
+            <div class="flex items-center gap-3">
+              <div style="height:32px;width:32px;border-radius:50%;background:#15803d;display:grid;place-items:center;font-size:11px;font-weight:bold;">JH</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-pure);">Jensen Huang</div>
+                <div class="text-micro" style="color:var(--text-subtle);">President &amp; CEO, NVIDIA</div>
               </div>
             </div>
-            <button class="suggestion-pill" style="align-self:flex-end;" onclick="openDrawer('Draft replies to unread mailbox threads.')">✨ AI Draft All</button>
           </div>
 
-          <!-- WIDGET 4: TODAY'S AGENDA -->
-          <div class="widget-card">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span style="height:8px;width:8px;border-radius:50%;background:#3b82f6;"></span>
-                <span style="font-size:13px;font-weight:600;">Today's Agenda &amp; Calendar</span>
-              </div>
-              <button onclick="openDrawer('Schedule team sync tomorrow at 10am.')" style="background:none;border:none;color:#818cf8;font-size:11px;cursor:pointer;">+ Schedule</button>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="padding:8px 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);" class="flex items-center justify-between">
-                <div><div style="font-size:12px;font-weight:500;">Executive Sprint Review &amp; Sync</div><div class="text-micro" style="color:var(--muted);">10:00 AM - 10:45 AM</div></div>
-                <span style="font-size:10px;padding:2px 6px;border-radius:4px;background:#1e1b4b;color:#a5b4fc;">5 People</span>
-              </div>
-              <div style="padding:8px 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);" class="flex items-center justify-between">
-                <div><div style="font-size:12px;font-weight:500;">Client Review: Harbourview</div><div class="text-micro" style="color:var(--muted);">02:00 PM - 02:30 PM</div></div>
-                <span style="font-size:10px;padding:2px 6px;border-radius:4px;background:#3b0764;color:#d8b4fe;">Client</span>
+          <div class="testimonial-card">
+            <p class="text-small" style="color:var(--text);line-height:1.6;">
+              "The best LLM applications have an autonomy slider: you control how much independence to give the AI. In Cursor, you can do Cmd+K for targeted edits, or let it rip with the full autonomy agentic version."
+            </p>
+            <div class="flex items-center gap-3">
+              <div style="height:32px;width:32px;border-radius:50%;background:#1d4ed8;display:grid;place-items:center;font-size:11px;font-weight:bold;">AK</div>
+              <div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-pure);">Andrej Karpathy</div>
+                <div class="text-micro" style="color:var(--text-subtle);">CEO, Eureka Labs</div>
               </div>
             </div>
           </div>
@@ -343,133 +506,163 @@
       </div>
     </section>
 
-    <!-- 2. VIEW: AUTONOMOUS JOBS -->
-    <section id="view-jobs" class="view-section" style="display:none;flex-direction:column;padding:40px 20px;max-width:960px;margin:0 auto;width:100%;gap:24px;">
+    <!-- ================= 2. VIEW: AUTONOMOUS JOBS ================= -->
+    <section id="view-jobs" class="view-section" style="display:none;flex-direction:column;padding:50px 24px;max-width:1040px;margin:0 auto;width:100%;gap:24px;">
       <div class="flex items-center justify-between pb-4" style="border-bottom:1px solid var(--border);">
         <div>
-          <h1 style="font-size:24px;font-bold;">Autonomous Background Jobs</h1>
-          <p class="text-small" style="color:var(--muted);">Scheduled cron automations executed by Celery against <span class="org-tenant-id" style="color:#818cf8;font-family:monospace;">org_hashira.db</span></p>
+          <h1 class="text-title" style="color:var(--text-pure);">Autonomous Background Jobs</h1>
+          <p class="text-small" style="color:var(--text-muted);margin-top:2px;">
+            Automate repetitive work — Scheduled cron automations executed by Celery against <span class="org-tenant-id" style="color:var(--cursor-amber);font-family:var(--font-mono);">org_hashira.db</span>
+          </p>
         </div>
-        <button class="btn-send" style="width:auto;height:auto;padding:8px 18px;border-radius:9999px;font-size:13px;font-weight:500;" onclick="openModal('create-job-modal')">+ Propose Routine</button>
+        <button class="btn-send" onclick="openModal('create-job-modal')">+ Propose Routine</button>
       </div>
 
-      <div class="widget-card" style="flex-direction:row;align-items:center;justify-content:space-between;">
-        <div class="flex items-center gap-3">
-          <span style="height:10px;width:10px;border-radius:50%;background:#34d399;" class="animate-pulse"></span>
-          <div>
-            <div style="font-size:13px;font-weight:600;">Celery Worker &amp; Beat Engine: Online</div>
-            <div class="text-micro" style="color:var(--muted);">Redis 7 broker active · Isolated per-tenant SQLite queue</div>
-          </div>
+      <!-- Celery Engine Status Card -->
+      <div class="cursor-window">
+        <div class="cursor-window-header">
+          <div class="window-dots"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+          <div class="window-title">celery-worker.service</div>
+          <span class="text-micro font-mono" style="color:var(--cursor-green);">● Online</span>
         </div>
-        <span class="text-micro" style="font-family:monospace;background:var(--fill);padding:4px 8px;border-radius:4px;">Concurrency: 2</span>
+        <div class="window-body flex items-center justify-between" style="padding:16px 20px;">
+          <div class="flex items-center gap-3">
+            <span style="height:10px;width:10px;border-radius:50%;background:var(--cursor-green);"></span>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--text-pure);">Celery Worker &amp; Beat Engine: Online</div>
+              <div class="text-micro font-mono" style="color:var(--text-muted);">Redis 7 broker active · Isolated per-tenant SQLite queue</div>
+            </div>
+          </div>
+          <span class="text-micro font-mono" style="background:var(--fill);padding:4px 10px;border-radius:9999px;border:1px solid var(--border);">Concurrency: 2</span>
+        </div>
       </div>
 
       <div id="jobs-list-container" style="display:flex;flex-direction:column;gap:12px;"></div>
     </section>
 
-    <!-- 3. VIEW: CONNECTIONS -->
-    <section id="view-connections" class="view-section" style="display:none;flex-direction:column;padding:40px 20px;max-width:960px;margin:0 auto;width:100%;gap:24px;">
+    <!-- ================= 3. VIEW: CONNECTIONS (VAULT) ================= -->
+    <section id="view-connections" class="view-section" style="display:none;flex-direction:column;padding:50px 24px;max-width:1040px;margin:0 auto;width:100%;gap:24px;">
       <div class="flex items-center justify-between pb-4" style="border-bottom:1px solid var(--border);">
         <div>
-          <h1 style="font-size:24px;font-bold;">Connected Business Integrations</h1>
-          <p class="text-small" style="color:var(--muted);">Encrypted OAuth credentials stored in <span class="org-tenant-id" style="color:#818cf8;font-family:monospace;">org_hashira.db</span></p>
+          <h1 class="text-title" style="color:var(--text-pure);">Connected Business Integrations</h1>
+          <p class="text-small" style="color:var(--text-muted);margin-top:2px;">
+            Encrypted OAuth credentials stored in <span class="org-tenant-id" style="color:var(--cursor-amber);font-family:var(--font-mono);">org_hashira.db</span>
+          </p>
         </div>
-        <button class="btn-send" style="width:auto;height:auto;padding:8px 18px;border-radius:9999px;font-size:13px;font-weight:500;" onclick="alert('OAuth provider authorization initiated.')">+ Connect Integration</button>
+        <button class="btn-send" onclick="alert('OAuth provider authorization initiated.')">+ Connect Integration</button>
       </div>
 
-      <div class="widget-card" style="flex-direction:row;align-items:center;gap:12px;">
-        <span style="font-size:20px;">🔒</span>
-        <div>
-          <div style="font-size:13px;font-weight:600;">Zero-Knowledge Envelope Encryption Vault</div>
-          <div class="text-micro" style="color:var(--muted);">All secrets encrypted at rest via AES-256-GCM with tenant-unique salt.</div>
+      <!-- Zero-Knowledge Vault Banner -->
+      <div class="cursor-window">
+        <div class="cursor-window-header">
+          <div class="window-dots"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+          <div class="window-title">envelope-encryption.vault</div>
+          <span class="text-micro font-mono" style="color:var(--cursor-amber);">AES-256-GCM</span>
+        </div>
+        <div class="window-body flex items-center gap-3" style="padding:16px 20px;">
+          <span style="font-size:22px;">🔒</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text-pure);">Zero-Knowledge Envelope Encryption Vault</div>
+            <div class="text-micro" style="color:var(--text-muted);">All OAuth access and refresh secrets encrypted at rest via AES-256-GCM with tenant-unique salt.</div>
+          </div>
         </div>
       </div>
 
       <div id="connections-grid-container" class="grid-2"></div>
     </section>
 
-    <!-- 4. VIEW: TEAM & BILLING -->
-    <section id="view-team" class="view-section" style="display:none;flex-direction:column;padding:40px 20px;max-width:960px;margin:0 auto;width:100%;gap:24px;">
+    <!-- ================= 4. VIEW: TEAM & BILLING ================= -->
+    <section id="view-team" class="view-section" style="display:none;flex-direction:column;padding:50px 24px;max-width:1040px;margin:0 auto;width:100%;gap:24px;">
       <div class="flex items-center justify-between pb-4" style="border-bottom:1px solid var(--border);">
         <div>
-          <h1 style="font-size:24px;font-bold;"><span class="org-name-text">Hashira</span> Organization Settings</h1>
-          <p class="text-small" style="color:var(--muted);">Multi-tenant organization management, seat allocations, and plan tiers</p>
+          <h1 class="text-title" style="color:var(--text-pure);"><span class="org-name-text">Hashira</span> Organization Settings</h1>
+          <p class="text-small" style="color:var(--text-muted);margin-top:2px;">Multi-tenant organization management, seat allocations, and plan tiers</p>
         </div>
-        <button class="btn-send" style="width:auto;height:auto;padding:8px 18px;border-radius:9999px;font-size:13px;font-weight:500;" onclick="openModal('add-member-modal')">+ Add Member</button>
+        <button class="btn-send" onclick="openModal('add-member-modal')">+ Add Member</button>
       </div>
 
       <!-- Billing Quota Meter -->
-      <div class="widget-card">
-        <div class="flex items-center justify-between">
-          <div>
-            <div style="font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:600;">Active Plan</div>
-            <div id="billing-plan-name" style="font-size:20px;font-weight:bold;margin-top:2px;">Business Pro</div>
-          </div>
-          <div style="text-align:right;">
-            <div id="billing-plan-price" style="font-size:24px;font-weight:bold;">$79.0</div>
-            <div class="text-micro" style="color:#34d399;font-family:monospace;">Auto-renews monthly</div>
-          </div>
+      <div class="cursor-window">
+        <div class="cursor-window-header">
+          <div class="window-dots"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+          <div class="window-title">billing-quota-meter.ts</div>
+          <span class="text-micro font-mono" style="color:var(--cursor-green);">Active Subscription</span>
         </div>
-        <div style="display:flex;flex-direction:column;gap:6px;padding-top:10px;">
-          <div class="flex justify-between text-micro" style="color:var(--muted);">
-            <span>AI Credits Consumption</span>
-            <span id="billing-credits-meter" style="font-family:monospace;color:var(--text);">1,580 / 500,000 (0.3%)</span>
+        <div class="window-body flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-micro" style="text-transform:uppercase;color:var(--text-subtle);font-weight:600;">Active Plan</div>
+              <div id="billing-plan-name" style="font-size:22px;font-weight:700;color:var(--text-pure);margin-top:2px;">Business Pro</div>
+            </div>
+            <div style="text-align:right;">
+              <div id="billing-plan-price" style="font-size:24px;font-weight:700;color:var(--text-pure);">$79.0</div>
+              <div class="text-micro font-mono" style="color:var(--cursor-green);">Auto-renews monthly</div>
+            </div>
           </div>
-          <div style="height:8px;width:100%;background:#1e293b;border-radius:9999px;overflow:hidden;">
-            <div id="billing-progress-bar" style="height:100%;width:0.3%;background:#6366f1;transition:width 0.4s;"></div>
+          <div class="flex flex-col gap-2" style="padding-top:10px;">
+            <div class="flex justify-between text-micro font-mono" style="color:var(--text-muted);">
+              <span>AI Credits Consumption</span>
+              <span id="billing-credits-meter" style="color:var(--text-pure);">1,580 / 500,000 (0.3%)</span>
+            </div>
+            <div style="height:6px;width:100%;background:rgba(255,255,255,0.08);border-radius:9999px;overflow:hidden;">
+              <div id="billing-progress-bar" style="height:100%;width:0.3%;background:var(--cursor-amber);transition:width 0.4s;"></div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Team Members Table -->
-      <div class="widget-card" style="padding:0;overflow:hidden;">
-        <div class="flex items-center justify-between" style="padding:14px 20px;border-bottom:1px solid var(--border);">
-          <span style="font-size:13px;font-weight:600;">Team Members &amp; Permissions</span>
-          <span class="text-micro" style="color:var(--muted);">Master DB Registry</span>
+      <div class="cursor-window">
+        <div class="cursor-window-header">
+          <div class="window-dots"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span></div>
+          <div class="window-title">team-members-registry.db</div>
+          <span class="text-micro font-mono" style="color:var(--text-subtle);">Master DB Registry</span>
         </div>
         <div id="team-members-list"></div>
       </div>
 
-      <!-- Plan Tiers -->
+      <!-- Plan Tiers (Cursor Style) -->
       <div>
-        <div style="font-size:14px;font-weight:bold;margin-bottom:12px;">Available Subscription Plans</div>
-        <div id="plans-cards-grid" style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:12px;"></div>
+        <div style="font-size:15px;font-weight:600;color:var(--text-pure);margin-bottom:14px;">Available Subscription Plans</div>
+        <div id="plans-cards-grid" style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:14px;"></div>
       </div>
     </section>
 
   </main>
 
-  <!-- ================= SLIDE-OUT ASK DRAWER ================= -->
+  <!-- ================= SLIDE-OUT ASK DRAWER (CURSOR DESKTOP STYLE) ================= -->
   <aside id="ask-drawer" class="ask-drawer">
-    <div class="flex items-center justify-between" style="height:56px;padding:0 20px;border-bottom:1px solid var(--border);flex-shrink:0;">
+    <div class="flex items-center justify-between" style="height:52px;padding:0 20px;border-bottom:1px solid var(--border);flex-shrink:0;">
       <div class="flex items-center gap-2">
-        <svg class="psheep shrink-0 select-none w-mono" width="18" height="18" viewBox="420.2 207.1 333.1 333.1">
-          <g transform="rotate(9 588.7 385.8)"><use fill="var(--sheep-fleece)" href="#psheep-2"></use><use fill="var(--sheep-face)" href="#psheep-3" transform="translate(0 -14)"></use></g>
+        <svg class="shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <polygon points="12 2, 21 7.2, 12 12.4, 3 7.2" fill="#ffffff"/>
+          <polygon points="12 12.4, 21 7.2, 21 17.6, 12 22.8" fill="#888888"/>
+          <polygon points="3 7.2, 12 12.4, 12 22.8, 3 17.6" fill="#444444"/>
         </svg>
         <div>
-          <div style="font-size:13px;font-weight:600;"><span class="org-name-text">Hashira</span> Agent</div>
-          <div style="font-size:10px;color:#34d399;">● Autonomous OS Online</div>
+          <div style="font-size:13px;font-weight:600;color:var(--text-pure);"><span class="org-name-text">Hashira</span> Agent</div>
+          <div class="text-micro font-mono" style="color:var(--cursor-green);">● Grok 4.7 Online</div>
         </div>
       </div>
       <button class="btn-icon" onclick="closeDrawer()">✕</button>
     </div>
 
     <!-- Messages Container -->
-    <div id="drawer-messages-list" style="flex:1;min-height:0;overflow-y:auto;padding:20px;display:flex;flex-direction:column;">
+    <div id="drawer-messages-list" style="flex:1;min-height:0;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;">
       <div style="margin:auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;">
-        <svg class="psheep shrink-0 select-none w-mono" width="80" height="80" viewBox="410.2 197.1 353.1 353.1">
+        <svg class="psheep shrink-0 select-none w-mono" width="60" height="60" viewBox="410.2 197.1 353.1 353.1">
           <g transform="rotate(9 588.7 385.8)"><use fill="var(--sheep-fleece)" href="#psheep-2"></use><use fill="var(--sheep-face)" href="#psheep-3" transform="translate(0 -14)"></use></g>
         </svg>
-        <div style="font-size:14px;font-weight:600;">How can <span class="org-name-text">Hashira</span> Agent assist you?</div>
-        <p class="text-micro" style="color:var(--muted);max-width:280px;">Schedule routines, chase overdue invoices, or build custom business mini-apps.</p>
+        <div style="font-size:14px;font-weight:600;color:var(--text-pure);">Plan, search, build anything with <span class="org-name-text">Hashira</span> Agent.</div>
+        <p class="text-micro" style="color:var(--text-muted);max-width:300px;line-height:1.5;">Schedule background routines, chase overdue invoices, or synthesize custom business mini-apps.</p>
       </div>
     </div>
 
     <!-- Drawer Input Form -->
-    <div style="padding:16px;border-top:1px solid var(--border);background:var(--bg);flex-shrink:0;">
+    <div style="padding:16px;border-top:1px solid var(--border);background:var(--bg-surface);flex-shrink:0;">
       <form id="drawer-input-form" style="position:relative;display:flex;align-items:center;">
-        <input id="drawer-prompt-input" type="text" placeholder="Ask agent or command task..." style="width:100%;height:42px;padding:0 46px 0 16px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:13px;outline:none;">
-        <button type="submit" class="btn-send" style="position:absolute;right:4px;height:34px;width:34px;">↑</button>
+        <input id="drawer-prompt-input" type="text" placeholder="Plan, search, build anything..." style="width:100%;height:42px;padding:0 50px 0 16px;border-radius:12px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);font-size:13px;outline:none;">
+        <button type="submit" class="btn-send" style="position:absolute;right:5px;height:32px;width:32px;padding:0;">↑</button>
       </form>
     </div>
   </aside>
@@ -480,29 +673,29 @@
   <div id="add-member-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
-        <h3 style="font-size:16px;font-weight:bold;">Add Team Member</h3>
+        <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">Add Team Member</h3>
         <button class="btn-icon" onclick="closeModal()">✕</button>
       </div>
       <form id="add-member-form" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
         <div>
-          <label class="text-micro" style="text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Full Name</label>
-          <input id="mem-name-input" type="text" placeholder="e.g. Maya Chen" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);">
+          <label class="text-micro font-mono" style="text-transform:uppercase;color:var(--text-subtle);display:block;margin-bottom:6px;">Full Name</label>
+          <input id="mem-name-input" type="text" placeholder="e.g. Maya Chen" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);outline:none;">
         </div>
         <div>
-          <label class="text-micro" style="text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Email Address</label>
-          <input id="mem-email-input" type="email" required placeholder="maya@company.com" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);">
+          <label class="text-micro font-mono" style="text-transform:uppercase;color:var(--text-subtle);display:block;margin-bottom:6px;">Email Address</label>
+          <input id="mem-email-input" type="email" required placeholder="maya@company.com" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);outline:none;">
         </div>
         <div>
-          <label class="text-micro" style="text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Role</label>
-          <select id="mem-role-select" style="width:100%;height:38px;padding:0 10px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);">
+          <label class="text-micro font-mono" style="text-transform:uppercase;color:var(--text-subtle);display:block;margin-bottom:6px;">Role</label>
+          <select id="mem-role-select" style="width:100%;height:38px;padding:0 10px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);outline:none;">
             <option value="member">Member</option>
             <option value="admin">Admin</option>
             <option value="owner">Owner</option>
           </select>
         </div>
-        <div class="flex justify-end gap-2" style="margin-top:10px;">
-          <button type="button" class="suggestion-pill" onclick="closeModal()">Cancel</button>
-          <button type="submit" class="btn-send" style="width:auto;height:auto;padding:8px 18px;border-radius:8px;font-size:12px;">Add Member</button>
+        <div class="flex justify-end gap-2" style="margin-top:12px;">
+          <button type="button" class="btn-ghost-pill" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-send">Add Member</button>
         </div>
       </form>
     </div>
@@ -512,18 +705,18 @@
   <div id="create-org-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
-        <h3 style="font-size:16px;font-weight:bold;">Create New Organization</h3>
+        <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">Create New Organization</h3>
         <button class="btn-icon" onclick="closeModal()">✕</button>
       </div>
       <form id="create-org-form" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
-        <p class="text-small" style="color:var(--muted);">Provisions a separate isolated SQLite tenant database file in <code style="color:#818cf8;">data/tenants/</code>.</p>
+        <p class="text-small" style="color:var(--text-muted);">Provisions a separate isolated SQLite tenant database file in <code style="color:var(--cursor-amber);font-family:var(--font-mono);">data/tenants/</code>.</p>
         <div>
-          <label class="text-micro" style="text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Organization Name</label>
-          <input id="new-org-name-input" type="text" required placeholder="e.g. Apex Dynamics" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);">
+          <label class="text-micro font-mono" style="text-transform:uppercase;color:var(--text-subtle);display:block;margin-bottom:6px;">Organization Name</label>
+          <input id="new-org-name-input" type="text" required placeholder="e.g. Apex Dynamics" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);outline:none;">
         </div>
-        <div class="flex justify-end gap-2" style="margin-top:10px;">
-          <button type="button" class="suggestion-pill" onclick="closeModal()">Cancel</button>
-          <button type="submit" class="btn-send" style="width:auto;height:auto;padding:8px 18px;border-radius:8px;font-size:12px;">Create Tenant</button>
+        <div class="flex justify-end gap-2" style="margin-top:12px;">
+          <button type="button" class="btn-ghost-pill" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-send">Create Tenant</button>
         </div>
       </form>
     </div>
@@ -533,30 +726,30 @@
   <div id="create-job-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
-        <h3 style="font-size:16px;font-weight:bold;">Propose Autonomous Routine</h3>
+        <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">Propose Autonomous Routine</h3>
         <button class="btn-icon" onclick="closeModal()">✕</button>
       </div>
       <form id="create-job-form" style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
         <div>
-          <label class="text-micro" style="text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Title</label>
-          <input id="new-job-title" type="text" required placeholder="e.g. Daily Inventory Reconciliation" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);">
+          <label class="text-micro font-mono" style="text-transform:uppercase;color:var(--text-subtle);display:block;margin-bottom:6px;">Title</label>
+          <input id="new-job-title" type="text" required placeholder="e.g. Daily Inventory Reconciliation" style="width:100%;height:38px;padding:0 12px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);outline:none;">
         </div>
         <div>
-          <label class="text-micro" style="text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Agent Instruction</label>
-          <textarea id="new-job-instr" rows="2" required placeholder="e.g. Scan Shopify orders every midnight and flag cancelled items." style="width:100%;padding:10px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);resize:none;"></textarea>
+          <label class="text-micro font-mono" style="text-transform:uppercase;color:var(--text-subtle);display:block;margin-bottom:6px;">Agent Instruction</label>
+          <textarea id="new-job-instr" rows="2" required placeholder="e.g. Scan Shopify orders every midnight and flag cancelled items." style="width:100%;padding:10px 12px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);resize:none;outline:none;font-family:inherit;"></textarea>
         </div>
         <div>
-          <label class="text-micro" style="text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;">Cron Schedule</label>
-          <select id="new-job-cron" style="width:100%;height:38px;padding:0 10px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);">
+          <label class="text-micro font-mono" style="text-transform:uppercase;color:var(--text-subtle);display:block;margin-bottom:6px;">Cron Schedule</label>
+          <select id="new-job-cron" style="width:100%;height:38px;padding:0 10px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);outline:none;">
             <option value="0 8 * * 1">Every Monday at 8:00 AM (0 8 * * 1)</option>
             <option value="0 9 * * *">Every Day at 9:00 AM (0 9 * * *)</option>
             <option value="0 0 * * *">Every Midnight (0 0 * * *)</option>
             <option value="*/15 * * * *">Every 15 Minutes (*/15 * * * *)</option>
           </select>
         </div>
-        <div class="flex justify-end gap-2" style="margin-top:10px;">
-          <button type="button" class="suggestion-pill" onclick="closeModal()">Cancel</button>
-          <button type="submit" class="btn-send" style="width:auto;height:auto;padding:8px 18px;border-radius:8px;font-size:12px;">Save Routine</button>
+        <div class="flex justify-end gap-2" style="margin-top:12px;">
+          <button type="button" class="btn-ghost-pill" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-send">Save Routine</button>
         </div>
       </form>
     </div>
@@ -567,14 +760,14 @@
     <div class="modal-content" style="max-width:620px;">
       <div class="flex items-center justify-between pb-3" style="border-bottom:1px solid var(--border);">
         <div>
-          <h3 style="font-size:16px;font-weight:bold;">✨ Synthetic App Compiler</h3>
-          <div class="text-micro" style="color:var(--muted);">Say what you want to see, and the agent builds an interactive unit.</div>
+          <h3 style="font-size:16px;font-weight:600;color:var(--text-pure);">✨ Synthetic App Compiler</h3>
+          <div class="text-micro" style="color:var(--text-muted);">Say what you want to see, and Cursor builds an interactive unit.</div>
         </div>
         <button class="btn-icon" onclick="closeModal()">✕</button>
       </div>
       <form onsubmit="compileSyntheticApp(event)" style="display:flex;gap:8px;margin-top:16px;">
-        <input id="synthetic-app-prompt" type="text" value="Shift scheduler for 12 technicians" placeholder="Describe mini-app..." style="flex:1;height:40px;padding:0 12px;border-radius:8px;background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:13px;">
-        <button type="submit" class="btn-send" style="width:auto;height:auto;padding:0 16px;border-radius:8px;font-size:12px;font-weight:500;">Generate</button>
+        <input id="synthetic-app-prompt" type="text" value="Shift scheduler for 12 technicians" placeholder="Describe mini-app..." style="flex:1;height:40px;padding:0 12px;border-radius:8px;background:var(--bg-well);border:1px solid var(--border);color:var(--text-pure);font-size:13px;outline:none;">
+        <button type="submit" class="btn-send">Generate</button>
       </form>
       <div id="synthetic-app-result" style="margin-top:16px;"></div>
     </div>
