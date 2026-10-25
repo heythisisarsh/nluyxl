@@ -1,5 +1,7 @@
+import os
 from fastapi import FastAPI, Depends, HTTPException, Request
-from fastapi.responses import StreamingResponse, JSONResponse
+from fastapi.responses import StreamingResponse, JSONResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
@@ -247,3 +249,17 @@ async def chat_stream(req: ChatStreamRequest):
             "X-Accel-Buffering": "no"
         }
     )
+
+
+# ==========================================
+# PURE HTML/CSS/JS FRONTEND MOUNT
+# ==========================================
+frontend_html_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend-html"))
+if os.path.exists(frontend_html_dir):
+    app.mount("/app", StaticFiles(directory=frontend_html_dir, html=True), name="frontend_html")
+
+    @app.get("/")
+    async def root_redirect():
+        """Redirects root browser requests to pure HTML/CSS/JS frontend."""
+        return RedirectResponse(url="/app/")
+

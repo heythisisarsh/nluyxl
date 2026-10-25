@@ -1,8 +1,10 @@
-﻿node_modules/
+node_modules/
 .next/
 bun.lockb
 __pycache__/
 *.pyc
-data/*.db
-data/tenants/*.db
+*.db
+backend/data/*.db
+backend/data/tenants/*.db
 .env
+
