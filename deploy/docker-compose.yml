@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: nluyxl-redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: nluyxl-api
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      SUPABASE_URL: "https://fmmliooyfkqhpbkwagxd.supabase.co"
+      SUPABASE_ANON_KEY: "${SUPABASE_ANON_KEY}"
+      SUPABASE_SERVICE_ROLE_KEY: "${SUPABASE_SERVICE_ROLE_KEY}"
+      REDIS_URL: "redis://redis:6379/0"
+      KMS_DATA_KEY_BASE64: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+    depends_on:
+      - redis
+
+  worker:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: nluyxl-worker
+    command: celery -A app.workers.tasks worker -B --loglevel=info
+    restart: always
+    environment:
+      SUPABASE_URL: "https://fmmliooyfkqhpbkwagxd.supabase.co"
+      REDIS_URL: "redis://redis:6379/0"
+    depends_on:
+      - redis
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: nluyxl-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: "http://api:8000"
+      NEXT_PUBLIC_SUPABASE_URL: "https://fmmliooyfkqhpbkwagxd.supabase.co"
+    depends_on:
+      - api
