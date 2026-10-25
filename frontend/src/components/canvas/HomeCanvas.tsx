@@ -183,7 +183,7 @@ export function HomeCanvas() {
             </div>
             <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs">
               <div className="font-semibold text-slate-200">Weekly Overdue Invoicing</div>
-              <p className="text-[11px] text-slate-400 mt-1">Found 3 overdue invoices (>14d). Ready to email payment reminders.</p>
+              <p className="text-[11px] text-slate-400 mt-1">Found 3 overdue invoices (&gt;14d). Ready to email payment reminders.</p>
               <div className="mt-3 flex space-x-2">
                 <button
                   onClick={() => alert("Invoicing follow-ups approved and sent via Gmail API.")}
