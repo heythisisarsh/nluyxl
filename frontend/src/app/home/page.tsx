@@ -6,12 +6,18 @@ import AskDrawer from "@/components/chat/AskDrawer";
 import MascotDefs from "@/components/MascotDefs";
 import { PlyxlLogo } from "@/components/Mascot";
 import { useTenant } from "@/context/TenantContext";
+import FinancialWidget from "@/components/canvas/FinancialWidget";
+import AutomationWidget from "@/components/canvas/AutomationWidget";
+import MailboxWidget from "@/components/canvas/MailboxWidget";
+import AgendaWidget from "@/components/canvas/AgendaWidget";
+import SyntheticAppModal from "@/components/apps/SyntheticAppModal";
 
 export default function HomePage() {
   const { currentOrg } = useTenant();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [promptText, setPromptText] = useState("");
   const [selectedPrompt, setSelectedPrompt] = useState("");
+  const [isAppModalOpen, setIsAppModalOpen] = useState(false);
 
   const quickPills = [
     { label: "Chase overdue invoices (>14d)", prompt: "Every Monday at 8 chase overdue invoices" },
@@ -21,14 +27,14 @@ export default function HomePage() {
   ];
 
   const appTiles = [
-    { id: "quickbooks", name: "Invoices", icon: "🧾", bg: "bg-emerald-950/60 border-emerald-800/40 text-emerald-300" },
-    { id: "calendar", name: "Calendar", icon: "📅", bg: "bg-blue-950/60 border-blue-800/40 text-blue-300" },
-    { id: "mail", name: "Gmail", icon: "✉️", bg: "bg-red-950/60 border-red-800/40 text-red-300" },
-    { id: "analytics", name: "Analytics", icon: "📈", bg: "bg-purple-950/60 border-purple-800/40 text-purple-300" },
-    { id: "stripe", name: "Billing", icon: "💳", bg: "bg-indigo-950/60 border-indigo-800/40 text-indigo-300" },
-    { id: "slack", name: "Slack", icon: "💬", bg: "bg-amber-950/60 border-amber-800/40 text-amber-300" },
-    { id: "linear", name: "Linear", icon: "⚡", bg: "bg-slate-900 border-slate-700 text-slate-300" },
-    { id: "new", name: "Build App", icon: "✨", bg: "bg-zinc-900 border-dashed border-zinc-700 text-zinc-400" },
+    { id: "quickbooks", name: "Invoices", icon: "🧾", bg: "bg-emerald-950/60 border-emerald-800/40 text-emerald-300", action: () => triggerChat("Audit invoice status across QuickBooks and list receivables.") },
+    { id: "calendar", name: "Calendar", icon: "📅", bg: "bg-blue-950/60 border-blue-800/40 text-blue-300", action: () => triggerChat("Check today's meetings and team schedules.") },
+    { id: "mail", name: "Gmail", icon: "✉️", bg: "bg-red-950/60 border-red-800/40 text-red-300", action: () => triggerChat("Triage unread high-priority emails.") },
+    { id: "analytics", name: "Analytics", icon: "📈", bg: "bg-purple-950/60 border-purple-800/40 text-purple-300", action: () => triggerChat("Show ARR growth and burn rate analysis.") },
+    { id: "stripe", name: "Billing", icon: "💳", bg: "bg-indigo-950/60 border-indigo-800/40 text-indigo-300", action: () => triggerChat("Review recent Stripe payouts and customer churn.") },
+    { id: "slack", name: "Slack", icon: "💬", bg: "bg-amber-950/60 border-amber-800/40 text-amber-300", action: () => triggerChat("Broadcast urgent update to #general Slack channel.") },
+    { id: "linear", name: "Linear", icon: "⚡", bg: "bg-slate-900 border-slate-700 text-slate-300", action: () => triggerChat("List blocking engineering bugs from Linear.") },
+    { id: "new", name: "Build App", icon: "✨", bg: "bg-zinc-900 border-dashed border-zinc-700 text-zinc-400", action: () => setIsAppModalOpen(true) },
   ];
 
   const triggerChat = (prompt: string) => {
@@ -48,7 +54,7 @@ export default function HomePage() {
       <MascotDefs />
 
       {/* DUAL-RAIL SIDEBAR */}
-      <Sidebar onOpenNewChat={() => triggerChat("Hi Hashira Agent, show me the workspace status.")} />
+      <Sidebar onOpenNewChat={() => triggerChat(`Hi ${currentOrg?.name || "Hashira"} Agent, show me the workspace status.`)} />
 
       {/* MAIN VIEWPORT */}
       <div className="flex-1 min-w-0 flex flex-col h-screen overflow-y-auto">
@@ -56,7 +62,9 @@ export default function HomePage() {
         <header className="lg:hidden flex items-center justify-between px-5 h-14 border-b border-[var(--border)] shrink-0">
           <PlyxlLogo height={20} />
           <div className="flex items-center gap-2">
-            <span className="squircle text-micro font-semibold px-2 py-0.5 bg-fill text-muted">20k</span>
+            <span className="squircle text-micro font-semibold px-2 py-0.5 bg-fill text-muted">
+              {currentOrg ? `${Math.round(currentOrg.credits_limit / 1000)}k` : "20k"}
+            </span>
             <button
               onClick={() => triggerChat("")}
               className="h-8 w-8 rounded-full bg-ink text-on-ink grid place-items-center"
@@ -69,9 +77,9 @@ export default function HomePage() {
         </header>
 
         {/* HERO CONTAINER */}
-        <main className="flex-1 flex flex-col items-center justify-center px-5 py-12 max-w-4xl mx-auto w-full">
+        <main className="flex-1 flex flex-col items-center px-5 py-10 max-w-5xl mx-auto w-full space-y-12">
           {/* Greeting */}
-          <div className="text-center space-y-3 mb-8">
+          <div className="text-center space-y-3 pt-4">
             <h1 className="font-display text-3xl sm:text-4xl text-text font-normal tracking-tight">
               Good morning, Arshin
             </h1>
@@ -151,7 +159,7 @@ export default function HomePage() {
           </form>
 
           {/* QUICK SUGGESTION PILLS */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             {quickPills.map((pill) => (
               <button
                 key={pill.label}
@@ -164,15 +172,15 @@ export default function HomePage() {
           </div>
 
           {/* 8-COLUMN APP SPRINGBOARD GRID */}
-          <div className="w-full max-w-2xl mt-14 pt-8 border-t border-[var(--border)]">
+          <div className="w-full max-w-4xl pt-6 border-t border-[var(--border)]">
             <div className="text-center text-micro uppercase tracking-wider text-muted font-medium mb-5">
-              Hashira Operating System Apps
+              {currentOrg?.name || "Hashira"} Operating System Springboard
             </div>
             <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
               {appTiles.map((tile) => (
                 <button
                   key={tile.id}
-                  onClick={() => triggerChat(`Open and review ${tile.name} application state.`)}
+                  onClick={tile.action}
                   className="flex flex-col items-center gap-2 group transition-transform active:scale-95"
                 >
                   <div
@@ -187,6 +195,32 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+
+          {/* LIVE 12-COLUMN OPERATIONAL CANVAS */}
+          <div className="w-full max-w-4xl pt-6 border-t border-[var(--border)] space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-base font-bold text-text">Workspace Live Units</h2>
+                <p className="text-micro text-muted">
+                  Interactive real-time modules connected to {currentOrg?.name || "Hashira"} tenant database
+                </p>
+              </div>
+              <button
+                onClick={() => setIsAppModalOpen(true)}
+                className="px-3 py-1.5 rounded-xl bg-fill hover:bg-fill-strong text-micro font-medium text-text border border-[var(--border)] transition flex items-center gap-1.5"
+              >
+                <span>+</span>
+                <span>Add Synthetic Unit</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FinancialWidget />
+              <AutomationWidget onOpenAgent={() => triggerChat("Inspect details for weekly overdue invoicing automation.")} />
+              <MailboxWidget onDraftReply={(subj, sender) => triggerChat(`Draft response to ${sender} regarding ${subj}`)} />
+              <AgendaWidget onScheduleNew={() => triggerChat("Schedule a 30-minute sync with the sales team.")} />
+            </div>
+          </div>
         </main>
       </div>
 
@@ -195,6 +229,12 @@ export default function HomePage() {
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         initialPrompt={selectedPrompt}
+      />
+
+      {/* SYNTHETIC APP COMPILER MODAL */}
+      <SyntheticAppModal
+        isOpen={isAppModalOpen}
+        onClose={() => setIsAppModalOpen(false)}
       />
     </div>
   );
