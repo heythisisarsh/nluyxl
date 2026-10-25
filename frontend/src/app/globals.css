@@ -2,25 +2,145 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./plyxl.css";
+
 :root {
-  --background: #070b14;
-  --foreground: #ededed;
+  --bg: #0e0e0d;
+  --surface: #1f1f1d;
+  --text: #f2f0eb;
+  --muted: #a39f97;
+  --subtle: #6e6a63;
+  --border: rgb(255 255 255 / 0.09);
+  --fill: rgb(255 255 255 / 0.07);
+  --fill-strong: rgb(255 255 255 / 0.11);
+  --ink: #f2f0eb;
+  --on-ink: #0e0e0d;
+  --ink-hover: #ffffff;
+  --brand-strong: #f2f0eb;
+  --brand-text: #f2f0eb;
+  --door-inset: 16px;
+  --bottom-clear: 48px;
+  --sidebar-width: 260px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.text-micro { font-size: 11px; line-height: 14px; }
+.text-small { font-size: 13px; line-height: 18px; }
+.text-subhead { font-size: 15px; line-height: 22px; }
+.text-title { font-size: 28px; line-height: 34px; font-weight: 600; }
+.text-display { font-size: 38px; line-height: 44px; font-weight: 600; }
+
+.font-display {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.squircle {
+  border-radius: 6px;
+}
+
+.ease-out-expo {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shadow-ink {
+  box-shadow: 0 4px 14px 0 rgba(255, 255, 255, 0.15);
+}
+
+.ask-input {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+}
+
+.ask-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar[data-collapsed="true"] {
+  width: 56px;
+}
+
+.sidebar-frame {
+  display: flex;
+  height: 100vh;
+  border-right: 1px solid var(--border);
+  background-color: var(--bg);
+}
+
+.sidebar-edge {
+  width: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+  border-right: 1px solid var(--border);
+  background-color: var(--bg);
+  flex-shrink: 0;
+}
+
+.sidebar-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  overflow: hidden;
+}
+
+.ask-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 540px;
+  max-width: 90vw;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.ask-drawer[data-open="true"] {
+  transform: translateX(0);
+}
+
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0f19;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--border);
   border-radius: 4px;
 }

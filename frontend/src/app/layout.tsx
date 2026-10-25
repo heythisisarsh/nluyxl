@@ -1,33 +1,20 @@
-"use client";
-
-import React, { useState } from "react";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { CommandBar } from "@/components/agent/CommandBar";
+import type { Metadata } from "next";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Plyxl",
+  description: "Autonomous AI Operating System for Business",
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isCommandBarOpen, setIsCommandBarOpen] = useState(false);
-
   return (
     <html lang="en" className="dark">
-      <body className="bg-[#070b14] text-slate-200 min-h-screen antialiased flex">
-        {/* Sidebar Navigation */}
-        <Sidebar onOpenCommandBar={() => setIsCommandBarOpen(true)} />
-
-        {/* Dynamic Route Content */}
-        <div className="flex-1 flex flex-col min-w-0">
-          {children}
-        </div>
-
-        {/* Global Agent Command Bar (⌘J) */}
-        <CommandBar
-          isOpen={isCommandBarOpen}
-          onClose={() => setIsCommandBarOpen(false)}
-        />
+      <body className="bg-[var(--bg)] text-[var(--text)] min-h-screen antialiased selection:bg-white/20 selection:text-white">
+        {children}
       </body>
     </html>
   );
