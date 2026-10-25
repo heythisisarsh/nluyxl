@@ -5,8 +5,10 @@ import Sidebar from "@/components/navigation/Sidebar";
 import AskDrawer from "@/components/chat/AskDrawer";
 import MascotDefs from "@/components/MascotDefs";
 import { PlyxlLogo } from "@/components/Mascot";
+import { useTenant } from "@/context/TenantContext";
 
 export default function HomePage() {
+  const { currentOrg } = useTenant();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [promptText, setPromptText] = useState("");
   const [selectedPrompt, setSelectedPrompt] = useState("");
@@ -74,7 +76,7 @@ export default function HomePage() {
               Good morning, Arshin
             </h1>
             <p className="text-subhead text-muted max-w-md mx-auto leading-relaxed">
-              Hashira Agent doesn’t know the business yet. Tell it what you need and it builds it.
+              {currentOrg?.name || "Hashira"} Agent doesn’t know the business yet. Tell it what you need and it builds it.
             </p>
           </div>
 
@@ -91,7 +93,7 @@ export default function HomePage() {
                   }
                 }}
                 rows={1}
-                placeholder="Ask Hashira Agent"
+                placeholder={`Ask ${currentOrg?.name || "Hashira"} Agent`}
                 className="w-full min-h-[74px] py-5 pl-6 pr-36 resize-none bg-transparent text-text text-base placeholder:text-muted/60 focus:outline-none"
               />
 

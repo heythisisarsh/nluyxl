@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SheepIcon, PlyxlLogo } from "@/components/Mascot";
+import OrgSwitcher from "@/components/navigation/OrgSwitcher";
+import { useTenant } from "@/context/TenantContext";
 
 interface SidebarProps {
   onOpenNewChat?: () => void;
@@ -12,6 +14,11 @@ interface SidebarProps {
 export default function Sidebar({ onOpenNewChat }: SidebarProps) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
+  const { currentOrg } = useTenant();
+
+  const creditsDisplay = currentOrg
+    ? `${Math.round(currentOrg.credits_limit / 1000)}k`
+    : "20k";
 
   const navItems = [
     {
@@ -50,38 +57,11 @@ export default function Sidebar({ onOpenNewChat }: SidebarProps) {
       ),
     },
     {
-      name: "Apps",
-      href: "#apps",
+      name: "Team & Billing",
+      href: "/settings/team",
       icon: (
         <svg className="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 256 256">
-          <path d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm-8,64H64V64h32v40Zm104-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm-8,64H160V64h32v40ZM104,136H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm-8,64H64V160h32v40Zm104-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm-8,64H160V160h32v40Z" />
-        </svg>
-      ),
-    },
-    {
-      name: "Mail",
-      href: "#mail",
-      icon: (
-        <svg className="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 256 256">
-          <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM208,192H48V75.49l80,60,80-60V192Z" />
-        </svg>
-      ),
-    },
-    {
-      name: "Calendar",
-      href: "#calendar",
-      icon: (
-        <svg className="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 256 256">
-          <path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM208,208H48V80H208V208Z" />
-        </svg>
-      ),
-    },
-    {
-      name: "App Store",
-      href: "#store",
-      icon: (
-        <svg className="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 256 256">
-          <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM128,176a48,48,0,1,1,48-48A48,48,0,0,1,128,176Z" />
+          <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.74a8,8,0,0,1-11.07-2.33,79.83,79.83,0,0,0-52.55-36.83,8,8,0,1,1,3.48-15.62,95.81,95.81,0,0,1,62.47,43.71A8,8,0,0,1,250.14,206.74ZM172,152a44,44,0,1,0-44-44,8,8,0,0,1-16,0,60,60,0,1,1,60,60,8,8,0,0,1,0-16Z" />
         </svg>
       ),
     },
@@ -104,14 +84,16 @@ export default function Sidebar({ onOpenNewChat }: SidebarProps) {
             </svg>
           </button>
 
-          <button
-            aria-label="20,000 of 20,000 free AI credits"
-            className="squircle grid h-6 min-w-8 place-items-center rounded-sm bg-fill px-1 text-micro tracking-normal font-semibold tabular text-muted hover:text-text hover:bg-fill-strong transition-colors mt-2"
-            title="20,000 free AI credits left"
-            type="button"
-          >
-            20k
-          </button>
+          <Link href="/settings/team">
+            <button
+              aria-label={`${creditsDisplay} credits`}
+              className="squircle grid h-6 min-w-8 place-items-center rounded-sm bg-fill px-1 text-micro tracking-normal font-semibold tabular text-muted hover:text-text hover:bg-fill-strong transition-colors mt-2"
+              title={`${creditsDisplay} AI credits left`}
+              type="button"
+            >
+              {creditsDisplay}
+            </button>
+          </Link>
 
           <div className="pt-3">
             <button
@@ -130,17 +112,31 @@ export default function Sidebar({ onOpenNewChat }: SidebarProps) {
           <nav className="flex flex-col items-center gap-1 pt-3">
             {navItems.map((item) => {
               const active = pathname === item.href;
+              if (item.action) {
+                return (
+                  <button
+                    key={item.name}
+                    onClick={item.action}
+                    className={`relative h-8 w-8 grid place-items-center rounded-md transition-colors duration-200 ease-out-expo ${
+                      active ? "bg-fill text-text" : "text-muted hover:text-text hover:bg-fill"
+                    }`}
+                    title={item.name}
+                  >
+                    <span className="flex">{item.icon}</span>
+                  </button>
+                );
+              }
               return (
-                <button
+                <Link
                   key={item.name}
-                  onClick={item.action}
+                  href={item.href}
                   className={`relative h-8 w-8 grid place-items-center rounded-md transition-colors duration-200 ease-out-expo ${
                     active ? "bg-fill text-text" : "text-muted hover:text-text hover:bg-fill"
                   }`}
                   title={item.name}
                 >
                   <span className="flex">{item.icon}</span>
-                </button>
+                </Link>
               );
             })}
           </nav>
@@ -153,12 +149,7 @@ export default function Sidebar({ onOpenNewChat }: SidebarProps) {
             <div className="flex items-center gap-1.5 px-4 pt-4 shrink-0">
               <PlyxlLogo height={20} />
               <div className="relative min-w-0 ml-1">
-                <button className="flex items-center gap-1 h-7 pl-2 pr-1.5 rounded-sm text-small font-medium text-text hover:bg-fill transition-colors max-w-[140px]">
-                  <span className="truncate">Hashira</span>
-                  <svg className="h-3.5 w-3.5 text-subtle shrink-0" fill="currentColor" viewBox="0 0 256 256">
-                    <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z" />
-                  </svg>
-                </button>
+                <OrgSwitcher />
               </div>
             </div>
 
@@ -211,15 +202,19 @@ export default function Sidebar({ onOpenNewChat }: SidebarProps) {
 
             {/* Bottom Profile Footer */}
             <div className="mt-auto p-3 border-t border-[var(--border)]">
-              <div className="flex items-center gap-2.5 p-1.5 rounded-md hover:bg-fill transition-colors cursor-pointer">
-                <div className="h-7 w-7 rounded-full bg-slate-800 text-xs font-semibold flex items-center justify-center text-text border border-white/10">
-                  A
+              <Link href="/settings/team">
+                <div className="flex items-center gap-2.5 p-1.5 rounded-md hover:bg-fill transition-colors cursor-pointer">
+                  <div className="h-7 w-7 rounded-full bg-slate-800 text-xs font-semibold flex items-center justify-center text-text border border-white/10">
+                    A
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-small font-medium text-text truncate">Arshin</div>
+                    <div className="text-[11px] text-muted truncate">
+                      {currentOrg?.name || "Hashira"} ({currentOrg?.plan_id || "free"})
+                    </div>
+                  </div>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <div className="text-small font-medium text-text truncate">Arshin</div>
-                  <div className="text-[11px] text-muted truncate">Hashira Admin</div>
-                </div>
-              </div>
+              </Link>
             </div>
           </div>
         )}

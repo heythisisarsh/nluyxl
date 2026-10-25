@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { AgentBust, SheepIcon } from "@/components/Mascot";
+import { useTenant } from "@/context/TenantContext";
 
 interface AskDrawerProps {
   isOpen: boolean;
@@ -23,6 +24,7 @@ interface Message {
 }
 
 export default function AskDrawer({ isOpen, onClose, initialPrompt = "" }: AskDrawerProps) {
+  const { currentOrg } = useTenant();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -66,7 +68,8 @@ export default function AskDrawer({ isOpen, onClose, initialPrompt = "" }: AskDr
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: text,
-          workspace_id: "b92a258f-0557-41d3-a845-0912495bf72b",
+          org_id: currentOrg?.id || "org_hashira",
+          workspace_id: `ws_${currentOrg?.id || "org_hashira"}`,
         }),
       });
 
@@ -154,7 +157,9 @@ export default function AskDrawer({ isOpen, onClose, initialPrompt = "" }: AskDr
             <SheepIcon size={16} />
           </div>
           <div>
-            <div className="text-small font-semibold text-[var(--text)]">Hashira Agent</div>
+            <div className="text-small font-semibold text-[var(--text)]">
+              {currentOrg?.name || "Hashira"} Agent
+            </div>
             <div className="text-[10px] text-muted flex items-center gap-1.5">
               <span className={`h-1.5 w-1.5 rounded-full ${isStreaming ? "bg-amber-400 animate-pulse" : "bg-emerald-400"}`} />
               <span>{isStreaming ? `Agent: ${agentStatus || "working"}...` : "Autonomous OS Ready"}</span>

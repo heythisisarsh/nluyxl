@@ -7,14 +7,32 @@ import json
 import logging
 from app.config import settings
 from app.agent.graph import stream_agent_events
+from app.tenancy.database import (
+    init_master_schema,
+    get_master_connection,
+    get_tenant_connection,
+)
+from app.tenancy.models import (
+    OrganizationCreateRequest,
+    OrganizationResponse,
+    MemberResponse,
+    AddMemberRequest,
+    PlanResponse,
+    ChangePlanRequest,
+    BillingSummaryResponse,
+)
+from app.tenancy.service import TenancyService
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("nluyxl")
 
+# Initialize master and tenant SQLite databases
+init_master_schema()
+
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    description="NLUYXL - Production Autonomous Workspace & Agent Engine"
+    description="NLUYXL - Multi-Tenant Autonomous Workspace with Database-per-Tenant Architecture"
 )
 
 # Enable CORS for Next.js Frontend
@@ -26,41 +44,141 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# In-memory grid fallback / cache
-_MOCK_GRID_STORE: Dict[str, Any] = {
-    "units": [
-        {"id": "grid_1", "unit_id": "unit_mailbox", "title": "Priority Mailbox", "x": 0, "y": 0, "w": 4, "h": 2},
-        {"id": "grid_2", "unit_id": "unit_calendar", "title": "Today's Agenda", "x": 4, "y": 0, "w": 4, "h": 2},
-        {"id": "grid_3", "unit_id": "unit_automation_invoicing", "title": "Active Automation: Invoicing", "x": 8, "y": 0, "w": 4, "h": 2}
-    ]
-}
 
 class ChatStreamRequest(BaseModel):
     message: str
     workspace_id: Optional[str] = None
+    org_id: Optional[str] = "org_hashira"
     session_id: Optional[str] = None
 
-class GridSaveRequest(BaseModel):
-    grid: List[Dict[str, Any]]
 
 @app.get("/api/health")
 async def health_check():
-    """Liveness probe for DigitalOcean / Kubernetes."""
+    """Liveness probe reporting multi-tenant SQLite database health."""
     return {
         "status": "healthy",
         "service": "nluyxl-api",
         "version": settings.VERSION,
-        "supabase_connected": True
+        "multi_tenant": True,
+        "architecture": "database-per-tenant (SQLite)",
+        "master_db": "data/master.db",
     }
+
+
+# ==========================================
+# MULTI-TENANCY: ORGANIZATIONS & TEAMS
+# ==========================================
+
+@app.get("/api/orgs", response_model=List[OrganizationResponse])
+async def list_organizations():
+    """Lists organizations for current authenticated user."""
+    return TenancyService.list_user_organizations()
+
+
+@app.post("/api/orgs", response_model=OrganizationResponse)
+async def create_organization(req: OrganizationCreateRequest):
+    """Creates a new organization and initializes its isolated SQLite tenant database."""
+    return TenancyService.create_organization(
+        name=req.name,
+        slug=req.slug,
+        plan_id=req.plan_id,
+    )
+
+
+@app.get("/api/orgs/{org_id}", response_model=OrganizationResponse)
+async def get_organization(org_id: str):
+    """Fetches details of an organization."""
+    return TenancyService.get_organization(org_id)
+
+
+@app.get("/api/orgs/{org_id}/members", response_model=List[MemberResponse])
+async def list_org_members(org_id: str):
+    """Lists all members and their roles for a specific organization."""
+    return TenancyService.list_members(org_id)
+
+
+@app.post("/api/orgs/{org_id}/members", response_model=MemberResponse)
+async def add_org_member(org_id: str, req: AddMemberRequest):
+    """Adds or invites a user to the organization with a specific role."""
+    return TenancyService.add_member(
+        org_id=org_id,
+        email=req.email,
+        full_name=req.full_name,
+        role=req.role,
+    )
+
+
+@app.delete("/api/orgs/{org_id}/members/{user_id}")
+async def remove_org_member(org_id: str, user_id: str):
+    """Removes a user from the organization."""
+    TenancyService.remove_member(org_id, user_id)
+    return {"status": "success", "message": f"Member {user_id} removed from {org_id}"}
+
+
+# ==========================================
+# PLANS & BILLING
+# ==========================================
+
+@app.get("/api/plans", response_model=List[PlanResponse])
+async def list_plans():
+    """Lists all available subscription tiers and credit allocations."""
+    return TenancyService.list_plans()
+
+
+@app.get("/api/orgs/{org_id}/billing", response_model=BillingSummaryResponse)
+async def get_billing_summary(org_id: str):
+    """Gets billing status, current plan, credit consumption, and invoice history."""
+    return TenancyService.get_billing_summary(org_id)
+
+
+@app.post("/api/orgs/{org_id}/billing/plan", response_model=BillingSummaryResponse)
+async def choose_plan(org_id: str, req: ChangePlanRequest):
+    """Upgrades or downgrades the organization plan and updates credit quotas."""
+    return TenancyService.change_plan(org_id, req.plan_id)
+
+
+# ==========================================
+# ISOLATED TENANT DATA (DATABASE-PER-TENANT)
+# ==========================================
+
+@app.get("/api/orgs/{org_id}/jobs")
+async def get_tenant_jobs(org_id: str):
+    """Queries jobs directly from the isolated tenant SQLite database."""
+    with get_tenant_connection(org_id) as conn:
+        rows = conn.execute("SELECT * FROM jobs ORDER BY created_at DESC;").fetchall()
+        return [dict(r) for r in rows]
+
+
+@app.get("/api/orgs/{org_id}/connections")
+async def get_tenant_connections(org_id: str):
+    """Queries OAuth integrations directly from the isolated tenant SQLite database."""
+    with get_tenant_connection(org_id) as conn:
+        rows = conn.execute("SELECT * FROM connections;").fetchall()
+        return [dict(r) for r in rows]
+
+
+# ==========================================
+# AI AGENT STREAMING
+# ==========================================
 
 @app.post("/api/chat/stream")
 async def chat_stream(req: ChatStreamRequest):
     """
-    Streams agent reasoning, tool call states, and approval cards via SSE.
+    Streams agent reasoning, tool calls, and approval cards for the active organization.
+    Records credit usage in master.db.
     """
-    ws_id = req.workspace_id or settings.DEFAULT_WORKSPACE_ID
-    user_id = "100ccd33-a02d-4c46-8431-765db15d7020"
-    
+    org_id = req.org_id or "org_hashira"
+    ws_id = req.workspace_id or f"ws_{org_id}"
+    user_id = "user_arshin"
+
+    # Track credit consumption in master DB
+    try:
+        with get_master_connection() as conn:
+            conn.execute("UPDATE organizations SET credits_used = credits_used + 15 WHERE id = ?;", (org_id,))
+            conn.commit()
+    except Exception as e:
+        logger.warning(f"Could not increment credit usage: {e}")
+
     return StreamingResponse(
         stream_agent_events(user_id=user_id, workspace_id=ws_id, prompt=req.message),
         media_type="text/event-stream",
@@ -70,67 +188,3 @@ async def chat_stream(req: ChatStreamRequest):
             "X-Accel-Buffering": "no"
         }
     )
-
-@app.put("/api/home/grid")
-async def save_home_grid(req: GridSaveRequest):
-    """
-    Persists updated canvas coordinates (500ms debounce or pagehide keepalive).
-    """
-    _MOCK_GRID_STORE["units"] = req.grid
-    logger.info(f"Updated Home Canvas Grid with {len(req.grid)} units.")
-    return {"status": "saved", "grid": _MOCK_GRID_STORE["units"]}
-
-@app.get("/api/home/grid")
-async def get_home_grid():
-    """Fetches the current canvas grid."""
-    return {"grid": _MOCK_GRID_STORE["units"]}
-
-@app.delete("/api/home/grid")
-async def reset_home_grid():
-    """Resets the user's canvas to team/workspace baseline."""
-    _MOCK_GRID_STORE["units"] = [
-        {"id": "grid_1", "unit_id": "unit_mailbox", "title": "Priority Mailbox", "x": 0, "y": 0, "w": 4, "h": 2},
-        {"id": "grid_2", "unit_id": "unit_calendar", "title": "Today's Agenda", "x": 4, "y": 0, "w": 4, "h": 2},
-        {"id": "grid_3", "unit_id": "unit_automation_invoicing", "title": "Active Automation: Invoicing", "x": 8, "y": 0, "w": 4, "h": 2}
-    ]
-    return {"status": "reset", "grid": _MOCK_GRID_STORE["units"]}
-
-@app.get("/api/home/widgets")
-async def get_widgets():
-    """Polled every 120s or on page visibility focus."""
-    return {
-        "widgets": [
-            {"id": "w_1", "name": "Priority Mailbox", "type": "mail", "status": "active"},
-            {"id": "w_2", "name": "Today's Calendar", "type": "calendar", "status": "synced"},
-            {"id": "w_3", "name": "A/R Invoicing Followup", "type": "automation", "status": "needs_approval"}
-        ]
-    }
-
-@app.get("/api/mail/threads")
-async def get_mail_threads(limit: int = 3):
-    """Priority mailbox triage feed."""
-    return {
-        "threads": [
-            {
-                "id": "th_01",
-                "sender": "David at Harbourview",
-                "subject": "HVAC Maintenance Building 4",
-                "preview": "Can your team quote on HVAC maintenance for Bldg 4?",
-                "status": "draft_ready"
-            },
-            {
-                "id": "th_02",
-                "sender": "Elena at Cedar Park",
-                "subject": "Heat pump overhaul schedule",
-                "preview": "Please confirm if Dev or Sam can come this Thursday.",
-                "status": "pending_reply"
-            },
-            {
-                "id": "th_03",
-                "sender": "QuickBooks Billing Alert",
-                "subject": "3 Overdue invoices detected",
-                "preview": "Invoices over 14 days late require attention.",
-                "status": "action_needed"
-            }
-        ][:limit]
-    }
